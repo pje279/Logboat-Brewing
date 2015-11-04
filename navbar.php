@@ -1,11 +1,3 @@
-<?php require 'api/init.php'; ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Logboat Brewing</title>
-    <?php require 'utilities/links.php'; ?>
-</head>
-<body>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -29,10 +21,9 @@
         <li><a href="#">Reports</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Login</a></li>
+          <li><a href="login.php">Login</a></li>
+          <li><a href="signup.php">Sign Up</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-</body>
-</html>
