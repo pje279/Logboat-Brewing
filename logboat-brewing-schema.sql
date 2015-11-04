@@ -6,9 +6,6 @@ CREATE TABLE user (
 	password varchar(20) NOT NULL
 );
 
-INSERT INTO user VALUES (DEFAULT, 'test', 'pass');
-
-
 DROP TABLE IF EXISTS ingredient;
 
 CREATE TABLE ingredient (

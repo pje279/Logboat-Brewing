@@ -1,8 +1,7 @@
 <?php
 
 require '../init.php';
-
-$result = array();
+require '../tools.php';
 
 $name = htmlspecialchars($_POST['name']);
 $supplier = htmlspecialchars($_POST['supplier']);
@@ -18,17 +17,10 @@ if(($stmt = $link->prepare($query))) {
     $stmt->bind_param("ssds", $name, $supplier, $quantity, $units);
     
     if($stmt->execute()) {
-        $result['success'] = true;
-        echo json_encode($result);
-        exit();
+        success();
     }
     
-    $result['error'] = 'Failed to execute';
-    
-} else {
-    $result['error'] = 'Failed to prepare query';
+    fail("Failed to execute");
 }
 
-$result['success'] = false;
-echo json_encode($result);
-exit();
+fail("Failed to prepare query");
