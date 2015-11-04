@@ -13,6 +13,7 @@ if(($stmt = $link->prepare($query))) {
     $stmt->store_result();
     
     $result = array();
+    $result['Post'] = $_POST;
     
     //Password does not match username
     if($stmt->num_rows == 0) {
