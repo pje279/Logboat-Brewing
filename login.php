@@ -13,7 +13,7 @@
                 $.post("api/user/login.php", $("#loginForm").serialize(),function(data) {
                     var jsonData = $.parseJSON(data);
                     console.dir(jsonData);
-                    if(jsonData.success == false){
+                    if(jsonData.success === false){
                         $("#errorMessage")
                             .html(jsonData.error)
                             .slideDown("fast")
@@ -36,10 +36,19 @@
                 <form id="loginForm">
                     <h2 class="text-center">Please Sign In</h2>
                     <div id="errorMessage" class="alert alert-danger text-center" role="alert"></div>
-                    <label for='username' class="sr-only">Username</label>
-                    <input type="text" id="username" name="username" class="form-control input-lg" placeholder="Username" required autofocus<?php echo $triedUsername; ?>>
-                    <label for='password' class="sr-only">Password</label>
-                    <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Password" required>
+                    
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for='username' class="sr-only">Username</label>
+                        <input type="text" id="username" name="username" class="form-control input-lg" placeholder="Username" required autofocus<?php echo $triedUsername; ?>>
+                    </div>
+                    
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for='password' class="sr-only">Password</label>
+                        <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Password" required>
+                    </div>
+                    
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
                 </form>
             </div>

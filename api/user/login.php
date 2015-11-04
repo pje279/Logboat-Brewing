@@ -1,19 +1,13 @@
 <?php
 
 require '../init.php';
+require '../tools.php';
 
 $username = htmlspecialchars($_POST['username']);
 $password = htmlspecialchars($_POST['password']);
 
 //$query = "SELECT id FROM user WHERE username = '$username' AND password = '$password'";
 $query = "SELECT id, password FROM user WHERE username = '$username'";
-
-function fail() {
-    $result['success'] = false;
-    $result['error'] = 'Invalid username or password.';
-    echo json_encode($result);
-    exit();
-}
 
 if(($stmt = $link->prepare($query))) {
     
