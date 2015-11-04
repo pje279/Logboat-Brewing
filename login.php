@@ -10,7 +10,7 @@
             $("#loginForm").submit(function(e) {
                 e.preventDefault();
                 
-                $.post("api/user/login.php", $("#loginForm").serialize(),function(data) {
+                $.post("api/user/login.php", $("#loginForm").serialize(), function(data) {
                     var jsonData = $.parseJSON(data);
                     console.dir(jsonData);
                     if(jsonData.success == false){
