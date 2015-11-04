@@ -7,8 +7,10 @@ if(isset($_SESSION['userId'])){
     exit;
 }
 
-if(isset($_POST['inputUsername']))
-    s
+if(isset($_POST['inputUsername'])){
+    
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +26,7 @@ if(isset($_POST['inputUsername']))
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <h2 class="text-center">Please Sign In</h2>
                     <label for='inputUsername' class="sr-only">Username</label>
+
                     <input type="text" id="inputUsername" name="inputUsername" class="form-control input-lg" placeholder="Username" required autofocus>
                     <label for='inputpassword' class="sr-only">Password</label>
                     <input type="password" id="inputpassword" name="inputpassword" class="form-control input-lg" placeholder="Password" required>
