@@ -12,5 +12,3 @@ $link = mysqli_connect("us-cdbr-azure-central-a.cloudapp.net", "b32bc9b09483cc",
 //Peter
 
 //Production?
-
-session_start();

@@ -1,10 +1,9 @@
-<?php require 'api/init.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Logboat Login</title>
+    <?php require 'utilities/links.php'; ?>
     
-        <?php require 'utilities/links.php'; ?>
     <script>
         $(document).ready(function() {
             $("#errorMessage").hide();

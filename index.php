@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-<?php require 'api/init.php' ?>
 <html>
     <head>
         <title>Logboat Brewing</title>
