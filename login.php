@@ -1,25 +1,16 @@
-<?php
-
-session_start();
-// Use to prevent access to login page if they are already logged in
-// if(isset($_SESSION['userId'])){
-//     header("Location: start.php");
-//     exit;
-// }
-
-?>
-
+<?php require 'api/init.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Logboat Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+        <?php require 'utilities/links.php'; ?>
     <script>
         $(document).ready(function() {
             $("#errorMessage").hide();
             $("#loginForm").submit(function(e) {
                 e.preventDefault();
+                
                 $.post("api/user/login.php", $("#loginForm").serialize(),function(data) {
                     var jsonData = $.parseJSON(data);
                     console.dir(jsonData);
@@ -32,7 +23,7 @@ session_start();
                         $("#password").val("");
                         $("#username").focus().select();
                     } else {
-                        window.location.href = "start.php";
+                        window.location.href = "home.php";
                     }
                 });
             });

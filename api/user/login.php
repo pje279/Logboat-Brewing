@@ -1,6 +1,6 @@
 <?php
 
-require '../link.php';
+require '../init.php';
 
 $username = htmlspecialchars($_POST['username']);
 $password = htmlspecialchars($_POST['password']);

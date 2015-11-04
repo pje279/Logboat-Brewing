@@ -1,6 +1,6 @@
 <?php
 
-require '../link.php';
+require '../init.php';
 
 $result = array();
 
