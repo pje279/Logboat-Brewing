@@ -1,11 +1,8 @@
 <?php
 
-//Unset the session variables
+//End the session
+session_start();
 session_unset();
+session_destroy();
 
-//Destroy the session
-$result['success'] = session_destroy();
-
-//Set the result
-echo json_encode($result);
-exit();
+header("Location: http://cs3380-jam9rd.cloudapp.net/LogboatBrewing/home.php");

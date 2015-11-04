@@ -4,14 +4,6 @@ function say($text) {
     echo "$text<br>";
 }
 
-function success() {
-    header("Location: http://cs3380-jam9rd.cloudapp.net/lab7/success.php");
-}
-
-function failure() {
-    header("Location: http://cs3380-jam9rd.cloudapp.net/lab7/failure.php");
-}
-
 function printReadOnly($key, $value = '') {
     echo "<div class='form-group'>";
     echo "<label for='$key'>$key</label>";

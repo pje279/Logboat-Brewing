@@ -14,8 +14,6 @@ if(($stmt = $link->prepare($query))) {
     $stmt->execute();
     $stmt->store_result();
     
-    $result = array();
-    
     //User does not exist in database
     if($stmt->num_rows == 0) {
         fail();
@@ -26,7 +24,7 @@ if(($stmt = $link->prepare($query))) {
     $stmt->fetch();
     
     if(!password_verify($password, $storedPass)) {
-        fail();
+        fail("Incorrect username or password");
     }
     
     //Start session 
