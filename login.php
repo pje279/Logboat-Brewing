@@ -7,6 +7,8 @@ if(isset($_SESSION['userId'])){
     exit;
 }
 
+if(isset($_POST['inputUsername']))
+    s
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +21,9 @@ if(isset($_SESSION['userId'])){
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <form>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <h2 class="text-center">Please Sign In</h2>
-                    <label for='inputUsername' class="sr-only">Email Address</label>
+                    <label for='inputUsername' class="sr-only">Username</label>
                     <input type="text" id="inputUsername" name="inputUsername" class="form-control input-lg" placeholder="Username" required autofocus>
                     <label for='inputpassword' class="sr-only">Password</label>
                     <input type="password" id="inputpassword" name="inputpassword" class="form-control input-lg" placeholder="Password" required>
