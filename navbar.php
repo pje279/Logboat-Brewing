@@ -21,8 +21,17 @@
         <li><a href="#">Reports</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <li><a href="login.php">Login</a></li>
-          <li><a href="signup.php">Sign Up</a></li>
+          <?php if(!isset($_SESSION['userId'])) { ?>
+          
+            <li><a href="login.php">Login</a></li>
+            <li><a href="signup.php">Sign Up</a></li>
+            
+          <?php } else { ?>
+            
+            <li><a href="#"><?= $_SESSION['username'] ?></a></li>
+            <li><a href="api/user/logout.php">Logout</a></li>
+            
+          <?php } ?>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
