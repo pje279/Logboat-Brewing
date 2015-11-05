@@ -1,2 +1,4 @@
+language: php
+
 deploy:
     provider: azure_web_apps
