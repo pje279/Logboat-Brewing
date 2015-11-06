@@ -7,5 +7,6 @@
     <body>
         <?php require 'navbar.php'; ?>
         <div class="jumbotron"><h1 class="text-center">Test of Auto Git Update!</h1></div>
+        <p>Testing</p>
     </body>
 </html>
