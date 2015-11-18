@@ -19,12 +19,18 @@
         <li><a href="#">Analytics</a></li>
         <li><a href="#">Keg Rentals</a></li>
         <li><a href="#">Reports</a></li>
+        
+        <?php if(isset($_SESSION['userId']) && $_SESSION['isAdmin']) { ?>
+            
+        <li><a href="users.php">Users</a></li>
+        
+        <?php } ?>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <?php if(!isset($_SESSION['userId'])) { ?>
           
             <li><a href="login.php">Login</a></li>
-            <li><a href="signup.php">Sign Up</a></li>
             
           <?php } else { ?>
             
