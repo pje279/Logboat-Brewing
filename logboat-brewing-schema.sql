@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user (
     id smallint NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username varchar(15) NOT NULL UNIQUE,
-    password varchar(60) NOT NULL
+    password varchar(256) NOT NULL
 );
 
 DROP TABLE IF EXISTS ingredient;
