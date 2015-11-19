@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Logboat Login</title>
-    <?php require 'utilities/links.php'; ?>
+    <?php require '../utilities/links.php'; ?>
     
     <script>
         $(document).ready(function() {
@@ -10,7 +10,7 @@
             $("#loginForm").submit(function(e) {
                 e.preventDefault();
                 
-                $.post("api/user/login.php", $("#loginForm").serialize(), function(data) {
+                $.post("../api/user/login.php", $("#loginForm").serialize(), function(data) {
                     var jsonData = $.parseJSON(data);
                     console.dir(jsonData);
                     if(jsonData.success === false){
@@ -22,7 +22,7 @@
                         $("#password").val("");
                         $("#username").focus().select();
                     } else {
-                        window.location.href = "home.php";
+                        window.location.href = "../home.php";
                     }
                 });
             });

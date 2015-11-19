@@ -22,7 +22,7 @@
         
         <?php if(isset($_SESSION['userId']) && $_SESSION['isAdmin']) { ?>
             
-        <li><a href="users.php">Users</a></li>
+        <li><a href="user/users.php">Users</a></li>
         
         <?php } ?>
         
@@ -30,7 +30,7 @@
       <ul class="nav navbar-nav navbar-right">
           <?php if(!isset($_SESSION['userId'])) { ?>
           
-            <li><a href="login.php">Login</a></li>
+            <li><a href="user/login.php">Login</a></li>
             
           <?php } else { ?>
             
