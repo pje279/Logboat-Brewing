@@ -24,11 +24,3 @@ function printNumberInput($key, $value = '') {
     echo "<input type='number' class='form-control' id='$key' name='$key' value='$value' required>";
     echo "</div>";
 }
-
-function isLoggedIn() {
-    return isset($_SESSION['userId']);
-}
-
-function isUserAdmin() {
-    return isLoggedIn() && $_SESSION['isAdmin'];
-}

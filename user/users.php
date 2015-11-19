@@ -1,3 +1,4 @@
+<?php require '../utilities/init.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
         });
         
         function updateUserList() {
-            $.getJSON("../api/user/getAll.php", function(data) {
+            $.getJSON("<?= getBaseUrl(); ?>api/user/getAll.php", function(data) {
                 if(!data.success) {
                     console.error(data.error);
                     //TODO: handle error in UI
@@ -64,7 +65,7 @@
             
             function deleteUser(id, username) {
                 if(confirm("Are you sure you want to delete " + username + " from the database?")) {
-                    $.post("../api/user/delete.php", { id: id }, function(data) {
+                    $.post("<?= getBaseUrl(); ?>api/user/delete.php", { id: id }, function(data) {
                         /*var jsonData = $.parseJSON(data);
                         if(!jsonData.success) {
                             console.error(jsonData.error);

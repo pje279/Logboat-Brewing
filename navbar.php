@@ -22,7 +22,7 @@
         
         <?php if(isset($_SESSION['userId']) && $_SESSION['isAdmin']) { ?>
             
-        <li><a href="user/users.php">Users</a></li>
+        <li><a href="<?= getBaseUrl(); ?>user/users.php">Users</a></li>
         
         <?php } ?>
         
@@ -30,7 +30,7 @@
       <ul class="nav navbar-nav navbar-right">
           <?php if(!isset($_SESSION['userId'])) { ?>
           
-            <li><a href="user/login.php">Login</a></li>
+          <li><a href="<?= getBaseUrl() ?>user/login.php">Login</a></li>
             
           <?php } else { ?>
             
@@ -40,7 +40,7 @@
                     <a class="center-block text-center" style="padding:0" href="#"><?= $_SESSION['username'] ?></a>
                 </div>
             </li>
-            <li><a href="api/user/logout.php">Logout</a></li>
+            <li><a href="<?= getBaseUrl() ?>api/user/logout.php">Logout</a></li>
             
           <?php } ?>
       </ul>
