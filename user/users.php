@@ -50,14 +50,16 @@
                     /**
                      * Delete button
                      */
-                    var deleteButton = $("<button></button>");
-                    deleteButton.addClass("btn btn-md btn-danger center-vertical right");
-                    deleteButton.text("Delete");
-                    deleteButton.click(function() {
-                        deleteUser(user.id, user.username);
-                    });
+                    if(user.id != <?= $_SESSION['userId']; ?>) {
+                        var deleteButton = $("<button></button>");
+                        deleteButton.addClass("btn btn-md btn-danger center-vertical right");
+                        deleteButton.text("Delete");
+                        deleteButton.click(function() {
+                            deleteUser(user.id, user.username);
+                        });
                     
-                    userCell.append(deleteButton);
+                        userCell.append(deleteButton);
+                    }
                     
                     userList.append(userCell);
                 });

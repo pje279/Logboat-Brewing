@@ -23,3 +23,12 @@ function isLoggedIn() {
 function isUserAdmin() {
     return isLoggedIn() && $_SESSION['isAdmin'];
 }
+
+function getBaseUrl() {
+    return "https://cs3380-jam9rd.cloudapp.net/LogboatBrewing/";    //Jacob
+    //Pearse
+    //Devun
+    //Seth
+    //Peter
+    //return "https://logboat.cloudapp.net/";                       //Master VM
+}

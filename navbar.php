@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Home</a>
+      <a class="navbar-brand" href="<?= getBaseUrl(); ?>">Home</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,7 +20,7 @@
         <li><a href="#">Keg Rentals</a></li>
         <li><a href="#">Reports</a></li>
         
-        <?php if(isset($_SESSION['userId']) && $_SESSION['isAdmin']) { ?>
+        <?php if(isUserAdmin()) { ?>
             
         <li><a href="<?= getBaseUrl(); ?>user/users.php">Users</a></li>
         
@@ -28,7 +28,7 @@
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <?php if(!isset($_SESSION['userId'])) { ?>
+          <?php if(!isLoggedIn()) { ?>
           
           <li><a href="<?= getBaseUrl() ?>user/login.php">Login</a></li>
             
