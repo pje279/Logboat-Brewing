@@ -34,7 +34,12 @@
             
           <?php } else { ?>
             
-            <li><a href="#"><?= $_SESSION['username'] ?></a></li>
+            <li style="height:50px">
+                <div class="center-vertical">
+                    <p class="center-block text-center" style="margin:0">Logged in as:</p>
+                    <a class="center-block text-center" style="padding:0" href="#"><?= $_SESSION['username'] ?></a>
+                </div>
+            </li>
             <li><a href="api/user/logout.php">Logout</a></li>
             
           <?php } ?>
