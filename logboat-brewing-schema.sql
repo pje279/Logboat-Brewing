@@ -13,6 +13,10 @@ INSERT INTO user VALUES
     (DEFAULT, 'admin', '$2y$10$p3q/PNqE8oiVT5BujBbqQ.25TkK9l7N9o3ptMDnikRurSEVniqlwq', true, NULL),
     (DEFAULT, 'test', '$2y$10$cDYAjrH6f/Q9SMjd5/EiNOxWzG1M/3BbNQO3NNU/0WBWzs8IxpAoe', false, NULL);
 
+DROP VIEW IF EXISTS userSafe;
+
+CREATE VIEW userSafe AS SELECT id, username, is_admin, password_expiration_date FROM user;
+
 DROP TABLE IF EXISTS ingredient;
 
 CREATE TABLE ingredient (
