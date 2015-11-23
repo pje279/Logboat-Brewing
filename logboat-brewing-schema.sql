@@ -13,7 +13,7 @@ DROP VIEW IF EXISTS userSafe;
 
 
 /*
- * User.0
+ * User
  */
 CREATE TABLE user (
     id smallint NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -31,7 +31,6 @@ INSERT INTO user VALUES
     (DEFAULT, 'test', '$2y$10$cDYAjrH6f/Q9SMjd5/EiNOxWzG1M/3BbNQO3NNU/0WBWzs8IxpAoe', false, DEFAULT, DEFAULT);
 
 CREATE VIEW userSafe AS SELECT id, username, isAdmin, created, passwordExpDate FROM user;
-
 
 /*
  * Unit
