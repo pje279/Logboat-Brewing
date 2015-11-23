@@ -27,7 +27,7 @@ CREATE TABLE user (
 /* Remove these for production application? These are here for our convenience right now. 
    Not sure how else to seed an admin account. */
 INSERT INTO user VALUES
-    (DEFAULT, 'admin', '$2y$10$p3q/PNqE8oiVT5BujBbqQ.25TkK9l7N9o3ptMDnikRurSEVniqlwq', true, DEFAULT, DEFAULT),
+    (DEFAULT, 'admin', '$2y$10$N5FtjNxtYAxB0WuoXHU.eOVVGeL3.kqtuSFKKnOpbEZ6vdlph.4Py', true, DEFAULT, DEFAULT),
     (DEFAULT, 'test', '$2y$10$cDYAjrH6f/Q9SMjd5/EiNOxWzG1M/3BbNQO3NNU/0WBWzs8IxpAoe', false, DEFAULT, DEFAULT);
 
 CREATE VIEW userSafe AS SELECT id, username, isAdmin, created, passwordExpDate FROM user;
