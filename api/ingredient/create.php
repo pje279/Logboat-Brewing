@@ -14,15 +14,15 @@ $unitId = $_POST['unitId'];
 $query = 'INSERT INTO ingredient VALUES (DEFAULT, ?, ?, ?, ?)';
 
 
-    $stmt = $link->prepare($query);
-    
-    $stmt->bind_param("ssdd", $name, $supplier, $quantity, $unitId);
-    
-    if($stmt->execute()) {
-        success();
-    } else {
-        fail($stmt->error);
-    }
+$stmt = $link->prepare($query);
+
+$stmt->bind_param("ssdd", $name, $supplier, $quantity, $unitId);
+
+if($stmt->execute()) {
+    success();
+} else {
+    fail($stmt->error);
+}
     //     success();
     // } else {
     //     fail("Error creating ingredient");

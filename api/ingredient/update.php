@@ -11,13 +11,25 @@ $unitId = $_POST['unitId'];
 
 $query = 'UPDATE ingredient SET name=?, supplier=?, quantity=?, unitId=? WHERE id=?';
 
-if(($result = $link->query($query))) {
-    
-    $stmt->bind_param("ssddd", $name, $supplier, $quantity, $unitId, $id);
-    
-    if($stmt->execute()) {
-        success();
-    }
+$stmt = $link->prepare($query);
+
+$stmt->bind_param("ssddd", $name, $supplier, $quantity, $unitId, $id);
+
+if($stmt->execute()) {
+    success();
+} else {
+    fail($stmt->error);
 }
 
-fail("Error updating ingredient");
+
+/* From Jacob */
+// if(($result = $link->query($query))) {
+   
+//     $stmt->bind_param("ssddd", $name, $supplier, $quantity, $unitId, $id);
+    
+//     if($stmt->execute()) {
+//         success();
+//     }
+// }
+
+// fail("Error updating ingredient");

@@ -23,6 +23,9 @@ require '../utilities/tools.php';
                         }
                     });
                 });
+                
+                //Open Modal for each row
+                
             });
         </script>
     </head>
@@ -35,11 +38,11 @@ require '../utilities/tools.php';
                     <div id="errorMessage" class="alert alert-danger text-center" role="alert" style="display: none;"></div>
                     <div class="form-group">
                         <label for="name">Ingredient Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="name" name="name" maxlength="100" required>
                     </div>
                     <div class="form-group">
                         <label for="supplier">Supplier</label>
-                        <input type="text" class="form-control" id="supplier" name="supplier">
+                        <input type="text" class="form-control" id="supplier" name="supplier" maxlength="30">
                     </div>
                     <div class="form-group">
                         <label for="quantity">Quantity</label>

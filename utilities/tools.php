@@ -55,5 +55,6 @@ class Database {
         } catch(PDOException $e) {
             echo "PDO Query Exception: " . $e->getMessage();
         }
+        echo "Hello?";
     }
 }
