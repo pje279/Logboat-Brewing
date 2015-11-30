@@ -53,7 +53,7 @@
                     <!-- Username -->
                     <div class="form-group">
                         <label for='username' class="sr-only">Username</label>
-                        <input type="text" id="username" name="username" class="form-control input-lg" placeholder="Username" required autofocus<?php echo $triedUsername; ?>>
+                        <input type="text" id="username" name="username" class="form-control input-lg" placeholder="Username" required autofocus>
                     </div>
                     
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
