@@ -10,6 +10,7 @@ $unitId = $_POST['unitId'];
 
 //TODO: handle cases for empty supplier / quantity
 
+/* This is the old query. Current schema doesn't support $unitId */
 $query = 'INSERT INTO ingredient VALUES (DEFAULT, ?, ?, ?, ?)';
 
 if(($stmt = $link->prepare($query))) {
@@ -20,5 +21,6 @@ if(($stmt = $link->prepare($query))) {
         success();
     }
 }
+
 
 fail("Error creating ingredient");
