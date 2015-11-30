@@ -16,7 +16,7 @@ require '../utilities/tools.php';
                                                  data.result[i].name +
                                                  "</td><td>" +
                                                  data.result[i].supplier +
-                                                 "</td><td" + 
+                                                 "</td><td>" + 
                                                  data.result[i].quantity +
                                                  "</tr>");
                     }
@@ -28,7 +28,7 @@ require '../utilities/tools.php';
     <body>
         <?php require '../navbar.php'; ?>
         
-        <table id="getAllTable">
+        <table id="getAllTable" class="table table-hover">
         <?php
         
         echo "<th>Name</th><th>Supplier</th><th>Quantity</th>";
