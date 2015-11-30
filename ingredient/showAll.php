@@ -26,7 +26,7 @@ require '../utilities/tools.php';
         </script>
     </head>
     <body>
-        <?php require 'navbar.php'; ?>
+        <?php require '../navbar.php'; ?>
         
         <table id="getAllTable">
         <?php
