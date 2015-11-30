@@ -27,13 +27,17 @@ require '../utilities/tools.php';
     </head>
     <body>
         <?php require '../navbar.php'; ?>
-        
-        <table id="getAllTable" class="table table-hover">
-        <?php
-        
-        echo "<th>Name</th><th>Supplier</th><th>Quantity</th>";
-        
-        
-        ?>
+        <div class="container">
+            <div class="row">
+                <a href="<?php echo getBaseUrl(); ?>ingredient/create.php">Add a New Ingredient</a>
+                <table id="getAllTable" class="table table-hover">
+                <?php
+                
+                echo "<th>Name</th><th>Supplier</th><th>Quantity</th>";
+                
+                
+                ?>
+            </div>
+        </div>
     </body>
 </html>
