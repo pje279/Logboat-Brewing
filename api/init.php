@@ -1,7 +1,9 @@
 <?php
 
+$cloudApp = "us-cdbr-azure-central-a.cloudapp.net";
+
 //Jacob
-$link = mysqli_connect("us-cdbr-azure-central-a.cloudapp.net", "b32bc9b09483cc", "9343ded0", "cs3380-jam9rd") or die("Connect Error " . mysql_error($link));
+//$link = mysqli_connect($cloudApp, "b32bc9b09483cc", "9343ded0", "cs3380-jam9rd") or fail("Connect Error " . mysql_error($link));
 
 //Pearse
 
@@ -11,6 +13,7 @@ $link = mysqli_connect("us-cdbr-azure-central-a.cloudapp.net", "b32bc9b09483cc",
 
 //Peter
 
-//Production?
+//Master VM
+$link = mysqli_connect($cloudApp, "be1dbd64a86c89", "3b83625d", "logboatdb") or fail("Connection error " . mysql_error($link));
 
 session_start();

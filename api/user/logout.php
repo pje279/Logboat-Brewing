@@ -1,11 +1,10 @@
 <?php
 
-//Unset the session variables
+require '../tools.php';
+
+//End the session
+session_start();
 session_unset();
+session_destroy();
 
-//Destroy the session
-$result['success'] = session_destroy();
-
-//Set the result
-echo json_encode($result);
-exit();
+header("Location: " . getBaseUrl());

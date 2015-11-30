@@ -1,6 +1,5 @@
+<?php require 'utilities/init.php'; ?>
 <!DOCTYPE html>
-
-<?php require 'api/init.php' ?>
 <html>
     <head>
         <title>Logboat Brewing</title>
@@ -8,5 +7,6 @@
     </head>
     <body>
         <?php require 'navbar.php'; ?>
+        <div class="jumbotron"><h1 class="text-center">Test of Auto Git Update!</h1></div>
     </body>
 </html>
