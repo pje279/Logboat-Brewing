@@ -10,7 +10,7 @@ require '../utilities/tools.php';
         
         <script>
             $(document).ready(function() {
-                $.get("<? getBaseUrl(); ?>" + "api/ingredient/getAll.php", function(data) {
+                $.get("<?php echo getBaseUrl(); ?>" + "api/ingredient/getAll.php", function(data) {
                     for(var i = 0, len = data.return.length; i < len; i++) {
                         $("#getAllTable").append("<tr><td>" +
                                                  data.return.name +
