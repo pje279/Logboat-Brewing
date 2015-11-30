@@ -8,7 +8,7 @@ function fail($error) {
     exit();
 }
 
-function success($resultArr) {
+function success($resultArr = array()) {
     $data = array();
     $data['success'] = true;
     $data['result'] = $resultArr;
