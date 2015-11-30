@@ -2,6 +2,12 @@
 require '../utilities/init.php';
 require '../utilities/tools.php';
 
+print_r(isLoggedIn());
+
+if(!isLoggedIn()) {
+    header("Location: " . getBaseUrl() . "user/login.php");
+    exit();
+}
 ?>
 <html>
     <head>
