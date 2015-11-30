@@ -77,7 +77,7 @@ class Database {
             $stmt->execute($bind_params);
             
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return data;
+            return $data;
         } catch(PDOException $e) {
             echo "PDO Query Exception: " . $e->getMessage();
         }
