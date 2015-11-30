@@ -13,14 +13,20 @@ $unitId = $_POST['unitId'];
 /* This is the old query. Current schema doesn't support $unitId */
 $query = 'INSERT INTO ingredient VALUES (DEFAULT, ?, ?, ?, ?)';
 
-if(($stmt = $link->prepare($query))) {
+
+    $stmt = $link->prepare($query);
     
     $stmt->bind_param("ssdd", $name, $supplier, $quantity, $unitId);
     
     if($stmt->execute()) {
         success();
+    } else {
+        fail($stmt->error);
     }
-}
+    //     success();
+    // } else {
+    //     fail("Error creating ingredient");
+    // }
 
 
-fail("Error creating ingredient");
+// fail("Error creating ingredient");

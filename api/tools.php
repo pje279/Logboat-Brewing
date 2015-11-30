@@ -52,19 +52,19 @@ function randomString($length = 6) {
 }
 
 class Database {
-    protected $dbname = "logboatDB";
-    protected $username = "be1dbd64a86c89";
-    protected $password = "3b83625d";
-    protected $host = "us-cdbr-azure-central-a.cloudapp.net";
-    protected $port = 3306;
+    protected static $dbname = "logboatDB";
+    protected static $username = "be1dbd64a86c89";
+    protected static $password = "3b83625d";
+    protected static $host = "us-cdbr-azure-central-a.cloudapp.net";
+    protected static $port = 3306;
     
     public static function runQuery($queryStr, $bind_params = array()) {
         try {
-            $connection = new PDO(  "mysql:host=" . $this->host
-                                    . ";dbname=" . $this->dbname
-                                    . ";port=" . $this->port
-                                    , $this->username
-                                    , $this->password
+            $connection = new PDO(  "mysql:host=" . self::$host
+                                    . ";dbname=" . self::$dbname
+                                    . ";port=" . self::$port
+                                    , self::$username
+                                    , self::$password
             );
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

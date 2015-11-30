@@ -11,8 +11,8 @@
             $("#loginForm").submit(function(e) {
                 e.preventDefault();
                 
-                $.post("../api/user/login.php", $("#loginForm").serialize(), function(data) {
-                    var jsonData = $.parseJSON(data);
+                $.post("../api/user/login.php", $("#loginForm").serialize(), function(jsonData) {
+                    // var jsonData = $.parseJSON(data);
                     console.dir(jsonData);
                     if(jsonData.success === false){
                         $("#errorMessage")

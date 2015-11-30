@@ -18,7 +18,9 @@ require '../utilities/tools.php';
                                                  data.result[i].supplier +
                                                  "</td><td>" + 
                                                  data.result[i].quantity +
-                                                 "</tr>");
+                                                 "</td><td>" +
+                                                 data.result[i].unitName +
+                                                 "</td></tr>");
                     }
                 
                 });
@@ -33,7 +35,7 @@ require '../utilities/tools.php';
                 <table id="getAllTable" class="table table-hover">
                 <?php
                 
-                echo "<th>Name</th><th>Supplier</th><th>Quantity</th>";
+                echo "<th>Name</th><th>Supplier</th><th>Quantity</th><th>Units</th>";
                 
                 
                 ?>
