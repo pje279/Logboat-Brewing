@@ -1,6 +1,6 @@
 <?php
 
-if($_SERVER['HTTPS'] != 'on') {
+if ($_SERVER['SERVER_PORT'] != 443) {
     header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
     exit();
 }
@@ -17,7 +17,7 @@ function isUserAdmin() {
 
 function getBaseUrl() {
     //return "https://cs3380-jam9rd.cloudapp.net/LogboatBrewing/";    //Jacob
-    //Pearse
+    //return "https://logboat-brewing-percyodi.c9.io/Logboat-Brewing/"; //Pearse
     //Devun
     //Seth
     //Peter

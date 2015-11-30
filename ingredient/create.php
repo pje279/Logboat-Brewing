@@ -24,11 +24,18 @@ require '../utilities/tools.php';
                         <label for="quantity">Quantity</label>
                         <input type="number" class="form-control" id="quantity" name="quantity" value='0' required>
                     </div>
+                    <div class="form-group">
+                        <label for="unitid">Units</label>
+                        <select name="unitid" class="form-control">
+                            <?php 
+                            $units = Database::runQuery("SELECT * FROM unit");
+                            foreach($units as $unit) {
+                                echo "<option value='{$unit['id']}'>{$unit['name']}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-default pull-right">Add Ingredient</button>
-                    <?php 
-                    $units = Database::runQuery("SELECT * FROM unit");
-                    print_r($units);
-                    ?>
                 </form>
             </div>
         </div>
