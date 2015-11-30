@@ -40,6 +40,11 @@ CREATE TABLE unit (
     name varchar(8) NOT NULL UNIQUE
 ) ENGINE=INNODB;
 
+INSERT INTO unit VALUES
+    (DEFAULT, 'bags'),
+    (DEFAULT, 'oz'),
+    (DEFAULT, 'lbs');
+
 
 /*
  * FermentationType
@@ -57,7 +62,9 @@ CREATE TABLE ingredient (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(30) NOT NULL,
     supplier varchar(30) DEFAULT NULL,
-    quantity float NOT NULL DEFAULT 0
+    quantity float NOT NULL DEFAULT 0,
+    unitId smallint NOT NULL,
+    FOREIGN KEY (unitId) REFERENCES unit (id)
 ) ENGINE=INNODB;
 
 
@@ -88,11 +95,9 @@ CREATE TABLE beerUsesIngredient (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     beerId int NOT NULL,
     ingredientId int NOT NULL,
-    unitId smallint NOT NULL,
     quantity float NOT NULL,
     FOREIGN KEY (beerId) REFERENCES beer (id),
-    FOREIGN KEY (ingredientId) REFERENCES ingredient (id),
-    FOREIGN KEY (unitId) REFERENCES unit (id)
+    FOREIGN KEY (ingredientId) REFERENCES ingredient (id)
 ) ENGINE=INNODB;
 
 
@@ -102,7 +107,7 @@ CREATE TABLE beerUsesIngredient (
 CREATE TABLE brew (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     date datetime NOT NULL,
-    int quantity NOT NULL,
+    quantity float NOT NULL,
     beerId int NOT NULL,
     userId smallint NOT NULL,
     FOREIGN KEY (beerId) REFERENCES beer (id),
