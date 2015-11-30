@@ -52,7 +52,7 @@ require '../utilities/tools.php';
                 });
                 
                 $("#modalDelete").click(function() {
-                    // if(confirm("Are you sure you want to delete this ingredient? This is not reversable!")) {
+                    if(confirm("Are you sure you want to delete this ingredient? This is not reversable!")) {
                         $.post("../api/ingredient/delete.php", {"id":$("#updateIngredientForm > #ingredientId").val()} , function(jsonData) {
                             if(jsonData.success === false) {
                                 $("#errorMessage")
@@ -64,7 +64,7 @@ require '../utilities/tools.php';
                                 window.location = "../ingredient/showAll.php";
                             }
                         });
-                    // }
+                    }
                 });
             });
         </script>
