@@ -1,5 +1,5 @@
 <?php
-require '../api/init.php';
+require '../utilities/init.php';
 require '../utilities/tools.php';
 
 ?>
@@ -10,7 +10,7 @@ require '../utilities/tools.php';
         
         <script>
             $(document).ready(function() {
-                $.get("<?php echo getBaseUrl(); ?>" + "api/ingredient/getAll.php", function(data) {
+                $.get("../api/ingredient/getAll.php", function(data) {
                     for(var i = 0, len = data.return.length; i < len; i++) {
                         $("#getAllTable").append("<tr><td>" +
                                                  data.return.name +
