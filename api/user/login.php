@@ -27,7 +27,6 @@ if(($stmt = $link->prepare($query))) {
     }
     
     //Start session 
-    session_start();
     $_SESSION['userId'] = $id;
     $_SESSION['username'] = $username;
     $_SESSION['isAdmin'] = $isAdmin;
