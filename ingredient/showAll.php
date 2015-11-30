@@ -13,11 +13,11 @@ require '../utilities/tools.php';
                 $.get("../api/ingredient/getAll.php", function(data) {
                     for(var i = 0, len = data.result.length; i < len; i++) {
                         $("#getAllTable").append("<tr><td>" +
-                                                 data.return[i].name +
+                                                 data.return.name +
                                                  "</td><td>" +
-                                                 data.return[i].supplier +
+                                                 data.return.supplier +
                                                  "</td><td" + 
-                                                 data.return[i].quantity +
+                                                 data.return.quantity +
                                                  "</tr>");
                     }
                 
