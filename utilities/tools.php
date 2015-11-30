@@ -35,10 +35,10 @@ class Database {
     public static function runQuery($queryStr, $bind_params = array()) {
         try {
             $connection = new PDO(  "mysql:host=" . self::$host
-                                    . ";dbname=" . self::dbname
-                                    . ";port=" . self::port
-                                    , self::username
-                                    , self::password
+                                    . ";dbname=" . self::$dbname
+                                    . ";port=" . self::$port
+                                    , self::$username
+                                    , self::$password
             );
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
