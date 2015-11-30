@@ -25,12 +25,12 @@ function isUserAdmin() {
 }
 
 function getBaseUrl() {
-    return "https://cs3380-jam9rd.cloudapp.net/LogboatBrewing/";    //Jacob
+    //return "https://cs3380-jam9rd.cloudapp.net/LogboatBrewing/";    //Jacob
     //Pearse
     //Devun
     //Seth
     //Peter
-    //return "https://logboat.cloudapp.net/";                       //Master VM
+    return "https://logboat.cloudapp.net/";                       //Master VM
 }
 
 /*
