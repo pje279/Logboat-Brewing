@@ -25,6 +25,10 @@ require '../utilities/tools.php';
                         <input type="number" class="form-control" id="quantity" name="quantity" value='0' required>
                     </div>
                     <button type="submit" class="btn btn-default pull-right">Add Ingredient</button>
+                    <?php 
+                    $units = Database::runQuery("SELECT * FROM unit");
+                    print_r($units);
+                    ?>
                 </form>
             </div>
         </div>
