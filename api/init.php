@@ -14,6 +14,6 @@ $cloudApp = "us-cdbr-azure-central-a.cloudapp.net";
 //Peter
 
 //Master VM
-$link = mysqli_connect($cloudApp, "b1dbd64a86c89", "3b83625d", "logboat") or fail("Connection error " . mysql_error($link));
+$link = mysqli_connect($cloudApp, "be1dbd64a86c89", "3b83625d", "logboatdb") or fail("Connection error " . mysql_error($link));
 
 session_start();
