@@ -11,7 +11,7 @@ require '../utilities/tools.php';
         <script>
             $(document).ready(function() {
                 $.get("../api/ingredient/getAll.php", function(data) {
-                    for(var i = 0, len = data.return.length; i < len; i++) {
+                    for(var i = 0, len = data.result.length; i < len; i++) {
                         $("#getAllTable").append("<tr><td>" +
                                                  data.return.name +
                                                  "</td><td>" +
