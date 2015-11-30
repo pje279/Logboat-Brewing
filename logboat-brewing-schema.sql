@@ -102,6 +102,7 @@ CREATE TABLE beerUsesIngredient (
 CREATE TABLE brew (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     date datetime NOT NULL,
+    int quantity NOT NULL,
     beerId int NOT NULL,
     userId smallint NOT NULL,
     FOREIGN KEY (beerId) REFERENCES beer (id),

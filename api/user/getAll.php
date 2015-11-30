@@ -15,4 +15,4 @@ if(($result = $link->query($query))) {
     success($users);
 }
 
-fail("Error performing query");
+fail("Error getting users");
