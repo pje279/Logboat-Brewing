@@ -67,6 +67,14 @@ CREATE TABLE ingredient (
     FOREIGN KEY (unitId) REFERENCES unit (id)
 ) ENGINE=INNODB;
 
+INSERT INTO ingredient VALUES
+    (DEFAULT, 'Lemondrop Hop Pellets', 'Northern Brewer', 55, 11),
+    (DEFAULT, 'Rahr 2-row pale', 'Rahr', 50, 21),
+    (DEFAULT, 'Briess Caramel 6OL', 'Briess', 10, 21),
+    (DEFAULT, 'Briess Caramel 8OL', 'Briess', 8.6, 21),
+    (DEFAULT, 'Fawecett Pale Chocolate', 'Fawcett Pale', 10.2, 21),
+    (DEFAULT, 'English Black Malt', 'Logboat', 3.3, 21);
+
 
 /*
  * BeerType
@@ -76,16 +84,27 @@ CREATE TABLE beerType (
     name varchar(20) NOT NULL UNIQUE
 ) ENGINE=INNODB;
 
+INSERT INTO beerType VALUES
+    (DEFAULT, 'All Grain'),
+    (DEFAULT, 'Wheat'),
+    (DEFAULT, 'IPA');
 
 /*
  * Beer
  */
 CREATE TABLE beer (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(20) NOT NULL,
+    name varchar(50) NOT NULL,
     createdBy smallint NOT NULL,
-    FOREIGN KEY (createdBy) REFERENCES user (id)
+    beerTypeId smallint NOT NULL,
+    FOREIGN KEY (createdBy) REFERENCES user (id),
+    FOREIGN KEY (beerTypeId) REFERENCES beerType (id)
 ) ENGINE=INNODB;
+
+INSERT INTO beer VALUES
+    (DEFAULT, 'Caribou Slobber Brown Ale', 1, 1),
+    (DEFAULT, 'Squirrel Nutkin Ale', 1, 21),
+    (DEFAULT, 'Janet''s Brown Ale', 1, 21);
 
 
 /*
@@ -100,19 +119,32 @@ CREATE TABLE beerUsesIngredient (
     FOREIGN KEY (ingredientId) REFERENCES ingredient (id)
 ) ENGINE=INNODB;
 
+INSERT INTO beerUsesIngredient VALUES
+    (DEFAULT, 1, 11, 9),
+    (DEFAULT, 1, 21, .75),
+    (DEFAULT, 1, 31, .5),
+    (DEFAULT, 1, 41, .25),
+    (DEFAULT, 1, 51, .125);
 
 /**
  * Brew
  */
 CREATE TABLE brew (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    date datetime NOT NULL,
+    brewStart datetime NOT NULL,
+    brewEnd datetime NOT NULL,
     quantity float NOT NULL,
     beerId int NOT NULL,
     userId smallint NOT NULL,
     FOREIGN KEY (beerId) REFERENCES beer (id),
     FOREIGN KEY (userId) REFERENCES user (id)
 ) ENGINE=INNODB;
+
+INSERT INTO brew VALUES
+    (DEFAULT, '2015-12-02 10:00:00', '2015-12-18 10:00:00', 450, 1, 1),
+    (DEFAULT, '2016-01-05 08:00:00', '2016-02-04 14:30:00', 565, 11, 1),
+    (DEFAULT, '2015-12-09 09:00:00', '2015-12-15 11:00:00', 675, 11, 1),
+    (DEFAULT, '2015-12-21 10:00:00', '2015-12-25 16:15:00', 888, 1, 1);
 
 
 /*
