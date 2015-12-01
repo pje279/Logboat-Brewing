@@ -3,26 +3,29 @@
 require '../init.php';
 require '../tools.php';
 
-$query = '  SELECT    ingredient.id, 
-                    ingredient.name, 
-                    supplier, 
-                    quantity, 
-                    unitId, 
-                    unit.name as unitName 
-            FROM ingredient 
-            LEFT OUTER JOIN unit ON unitId=unit.id 
-            ORDER BY ingredient.name';
+$query = 
+    "SELECT 
+        beer.id,
+        beer.name,
+        beer.beerTypeId,
+        beer.beerType,
+        beer.createdBy,
+        user.username
+    FROM
+        (SELECT
+            beer.id,
+            beer.name,
+            beer.beerTypeId,
+            beerType.name as beerType,
+            beer.createdBy
+        FROM beer INNER JOIN beerType
+            ON beer.beerTypeId = beerType.id)
+        AS beer
+    INNER JOIN user
+        ON beer.createdBy = user.id";
 
-if(($result = $link->query($query))) {
-    $ingredients = array();
-    
-    while($row = $result->fetch_assoc()) {
-        array_push($ingredients, $row);
-    }
-    
-    
-    
-    success($ingredients);
+if(($data = Database::runQuery($query))) {
+    success($data);
 }
 
-fail("Error getting ingredients");
+fail("Error in beer/getAll.php");

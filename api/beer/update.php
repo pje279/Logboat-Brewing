@@ -3,33 +3,23 @@
 require '../init.php';
 require '../tools.php';
 
+if(!isLoggedIn()) {
+    fail("Only logged in users can update beer recipes");
+}
+
 $id = htmlspecialchars($_POST['id']);
 $name = htmlspecialchars($_POST['name']);
-$supplier = htmlspecialchars($_POST['supplier']);
-$quantity = $_POST['quantity'];
-$unitId = $_POST['unitId'];
+$createdBy = $_SESSION['userId'];
+$beerTypeId = $_POST['beerTypeId'];
 
-$query = 'UPDATE ingredient SET name=?, supplier=?, quantity=?, unitId=? WHERE id=?';
+$query = 'UPDATE beer SET name=?, createdBy=?, beerTypeId=? WHERE id=?';
 
 $stmt = $link->prepare($query);
 
-$stmt->bind_param("ssddd", $name, $supplier, $quantity, $unitId, $id);
+$stmt->bind_param("sddd", $name, $createdBy, $beerTypeId, $id);
 
 if($stmt->execute()) {
     success();
-} else {
-    fail($stmt->error);
 }
 
-
-/* From Jacob */
-// if(($result = $link->query($query))) {
-   
-//     $stmt->bind_param("ssddd", $name, $supplier, $quantity, $unitId, $id);
-    
-//     if($stmt->execute()) {
-//         success();
-//     }
-// }
-
-// fail("Error updating ingredient");
+fail($stmt->error);

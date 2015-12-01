@@ -3,30 +3,22 @@
 require '../init.php';
 require '../tools.php';
 
+if(!isLoggedIn()) {
+    fail("Only logged in users can create beer recipes");
+}
+
 $name = htmlspecialchars($_POST['name']);
-$supplier = htmlspecialchars($_POST['supplier']);
-$quantity = $_POST['quantity'];
-$unitId = $_POST['unitId'];
+$createdBy = $_SESSION['userId'];
+$beerTypeId = $_POST['beerTypeId'];
 
-//TODO: handle cases for empty supplier / quantity
-
-/* This is the old query. Current schema doesn't support $unitId */
-$query = 'INSERT INTO ingredient VALUES (DEFAULT, ?, ?, ?, ?)';
-
+$query = 'INSERT INTO beer VALUES (DEFAULT, ?, ?, ?)';
 
 $stmt = $link->prepare($query);
 
-$stmt->bind_param("ssdd", $name, $supplier, $quantity, $unitId);
+$stmt->bind_param("sdd", $name, $createdBy, $beerTypeId);
 
 if($stmt->execute()) {
     success();
-} else {
-    fail($stmt->error);
 }
-    //     success();
-    // } else {
-    //     fail("Error creating ingredient");
-    // }
 
-
-// fail("Error creating ingredient");
+fail($stmt->error);

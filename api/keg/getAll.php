@@ -3,7 +3,7 @@
 require '../init.php';
 require '../tools.php';
 
-if($data = Database::runQuery(
+$query = 
     "SELECT 
         keg.id as kegId,
         keg.serialNum,
@@ -16,12 +16,10 @@ if($data = Database::runQuery(
         (SELECT * FROM kegorder WHERE returned = 0) AS kegorder
         ON kegorder.kegId=keg.id
     LEFT OUTER JOIN customer ON kegorder.customerId = customer.id
-    GROUP BY keg.id")) 
-{
+    GROUP BY keg.id";
+
+if(($data = Database::runQuery($query))) {
     success($data);
-} else {
-    fail("Error in keg/getAll.php");
 }
 
-
-?>
+fail("Error in keg/getAll.php");

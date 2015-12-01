@@ -42,7 +42,6 @@ if(!isLoggedIn()) {
                             });
                         });
                     });
-                    
                 });
                 
                 //Set Create Modal links
@@ -103,20 +102,20 @@ if(!isLoggedIn()) {
                 });
                 
                 $(".modalCreate").click(function() {
-                    if($("#createIngredientForm input#name").val() == '') {
+                    if($("#createKegForm input#serialNum").val() == '') {
                         $("#errorMessage")
-                            .html("Please Enter an Ingredient Name")
+                            .html("Please Enter a Keg Serial Number")
                             .slideDown("fast")
                             .delay(10000)
                             .slideUp(1000);
-                    } else if ($("#createIngredientForm input#name").val().length > 100) {
+                    } else if ($("#createKegForm input#serialNum").val().length > 50) {
                         $("#errorMessage")
-                            .html("Ingredient Name can be no longer than 100 characters")
+                            .html("Serial Number can be no longer than 50 characters")
                             .slideDown("fast")
                             .delay(10000)
                             .slideUp(1000);
                     } else {
-                        $.post("../api/ingredient/create.php", $("#createIngredientForm").serialize() , function(jsonData) {
+                        $.post("../api/keg/create.php", $("#createKegForm").serialize() , function(jsonData) {
                             if(jsonData.success === false) {
                                 $("#errorMessage")
                                     .html(jsonData.error)
@@ -124,7 +123,7 @@ if(!isLoggedIn()) {
                                     .delay(10000)
                                     .slideUp(1000);
                             } else {
-                                window.location = "../ingredient/showAll.php";
+                                window.location = "../keg/showAll.php";
                             }
                         });
                     }
@@ -136,11 +135,11 @@ if(!isLoggedIn()) {
         <?php require '../navbar.php'; ?>
         <div class="container">
             <div class="row">
-                <a href="<?php echo getBaseUrl(); ?>ingredient/create.php" class="callCreateModal">Add a New Ingredient</a>
+                <a href="<?php echo getBaseUrl(); ?>ingredient/create.php" class="callCreateModal">Add a New Keg</a>
                 <table id="getAllTable" class="table table-hover">
                 <?php
                 
-                echo "<th>Name</th><th>Supplier</th><th>Quantity</th><th>Units</th>";
+                echo "<th>Keg Serial Num</th><th>Keg Order ID</th><th>Current Customer ID</th>";
                 
                 
                 ?>
