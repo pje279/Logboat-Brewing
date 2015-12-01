@@ -1,8 +1,9 @@
+<?php require '../utilities/init.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Logboat Login</title>
-    <?php require 'utilities/links.php'; ?>
+    <?php require '../utilities/links.php'; ?>
     
     <script>
         $(document).ready(function() {
@@ -10,8 +11,8 @@
             $("#loginForm").submit(function(e) {
                 e.preventDefault();
                 
-                $.post("api/user/login.php", $("#loginForm").serialize(), function(data) {
-                    var jsonData = $.parseJSON(data);
+                $.post("../api/user/login.php", $("#loginForm").serialize(), function(jsonData) {
+                    // var jsonData = $.parseJSON(data);
                     console.dir(jsonData);
                     if(jsonData.success === false){
                         $("#errorMessage")
@@ -22,7 +23,7 @@
                         $("#password").val("");
                         $("#username").focus().select();
                     } else {
-                        window.location.href = "home.php";
+                        window.location.href = "../home.php";
                     }
                 });
             });
@@ -30,6 +31,7 @@
     </script>
 </head>
 <body>
+    <?php require '../navbar.php'; ?>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -40,7 +42,7 @@
                     <!-- Username -->
                     <div class="form-group">
                         <label for='username' class="sr-only">Username</label>
-                        <input type="text" id="username" name="username" class="form-control input-lg" placeholder="Username" required autofocus<?php echo $triedUsername; ?>>
+                        <input type="text" id="username" name="username" class="form-control input-lg" placeholder="Username" required autofocus>
                     </div>
                     
                     <!-- Password -->

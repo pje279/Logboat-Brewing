@@ -1,14 +1,8 @@
 <?php
 
-//Jacob
-$link = mysqli_connect("us-cdbr-azure-central-a.cloudapp.net", "b32bc9b09483cc", "9343ded0", "cs3380-jam9rd") or die("Connect Error " . mysql_error($link));
+//Master VM
+$link = mysqli_connect("us-cdbr-azure-central-a.cloudapp.net", "be1dbd64a86c89", "3b83625d", "logboatdb") or fail("Connection error " . mysql_error($link));
 
-//Pearse
+header('Content-type: application/json');
 
-//Devun
-
-//Seth
-
-//Peter
-
-//Production?
+session_start();
