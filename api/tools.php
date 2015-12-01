@@ -26,11 +26,11 @@ function isUserAdmin() {
 
 function getBaseUrl() {
     //return "https://cs3380-jam9rd.cloudapp.net/LogboatBrewing/";    //Jacob
-    //return "https://logboat-brewing-percyodi.c9.io/Logboat-Brewing/"; //Pearse
+    return "https://logboat-brewing-percyodi.c9.io/Logboat-Brewing/"; //Pearse
     //Devun
     //Seth
     //Peter
-    return "https://logboat.cloudapp.net/";                       //Master VM
+    //return "https://logboat.cloudapp.net/";                       //Master VM
 }
 
 /*
@@ -76,7 +76,11 @@ class Database {
             $stmt = $connection->prepare($queryStr);
             $stmt->execute($bind_params);
             
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if($stmt->columnCount() != 0) {
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $data['numAffected'] = $stmt->rowCount();
+            }
             return $data;
         } catch(PDOException $e) {
             echo "PDO Query Exception: " . $e->getMessage();

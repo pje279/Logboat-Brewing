@@ -20,10 +20,10 @@ if(!isLoggedIn()) {
                         for(var i = 0, len = data.result.length; i < len; i++) {
                             $("#getAllTable").append("<tr data-kegId='" + data.result[i].kegId + "'><td>" +
                                                      data.result[i].serialNum +
-                                                     "</td><td>" +
-                                                     data.result[i].kegOrderId +
                                                      "</td><td>" + 
-                                                     data.result[i].customerId +
+                                                     (data.result[i].customerFirstName != null && data.result[i].customerLastName != null 
+                                                        ? data.result[i].customerFirstName + " " + data.result[i].customerLastName
+                                                        : "Not Rented Out") +
                                                      "</td></tr>");
                         }
                         // Set all the rows to open modal
@@ -138,7 +138,7 @@ if(!isLoggedIn()) {
                 <table id="getAllTable" class="table table-hover">
                 <?php
                 
-                echo "<th>Keg Serial Num</th><th>Keg Order ID</th><th>Current Customer ID</th>";
+                echo "<th>Keg Serial Num</th><th>Rented To</th>";
                 
                 
                 ?>
@@ -153,12 +153,12 @@ if(!isLoggedIn()) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="modalLabel">Update Ingredient Form</h4>
+                        <h4 class="modal-title" id="modalLabel">Update Keg Form</h4>
                     </div>
                     <div class="modal-body"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close Without Saving</button>
-                        <button type="button" class="modalDelete btn btn-danger">Delete Ingredient</button> 
+                        <button type="button" class="modalDelete btn btn-danger">Delete Keg</button> 
                         <button type="button" class="modalSave btn btn-primary">Save changes</button>
                     </div>
                 </div>
@@ -171,12 +171,12 @@ if(!isLoggedIn()) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="modalLabel">New Ingredient Form</h4>
+                        <h4 class="modal-title" id="modalLabel">New Keg Form</h4>
                     </div>
                     <div class="modal-body"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close Without Saving</button>
-                        <button type="button" class="modalCreate btn btn-primary">Create Ingredient</button>
+                        <button type="button" class="modalCreate btn btn-primary">Add Keg</button>
                     </div>
                 </div>
             </div>

@@ -50,11 +50,14 @@ class Database {
             $stmt = $connection->prepare($queryStr);
             $stmt->execute($bind_params);
             
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if($stmt->columnCount() != 0) {
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $data['numAffected'] = $stmt->rowCount();
+            }
             return $data;
         } catch(PDOException $e) {
             echo "PDO Query Exception: " . $e->getMessage();
         }
-        echo "Hello?";
     }
 }

@@ -25,9 +25,15 @@ if(!isLoggedIn()) {
                     header: {
         				left: 'prev,next today',
         				center: 'title',
-        				right: 'month,basicWeek,basicDay'
+        				right: 'month,basicWeek,agendaDay'
         			},
+        			slotEventOverlap: false,
                     events: "../api/schedule/getAll.php"
+                });
+                
+                //Custom functions
+                $("#calendarSave").click(function() {
+                    $.post("../api/schedule/saveFullCalendar.php", {"events": $("#calendar").fullCalendar('clientEvents')});
                 });
             });
         </script>
@@ -40,7 +46,7 @@ if(!isLoggedIn()) {
                     <div id="calendar"></div>
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" id="calendarSave" class="btn btn-primary" disabled="disabled" data-toggle="tooltip" title="Disabled until feature created">Save Current <br>Calendar</button>
+                    <button type="button" id="calendarSave" class="btn btn-primary" data-toggle="tooltip" title="Disabled until feature created">Save Current <br>Calendar</button>
                 </div>
             </div>
         </div>
