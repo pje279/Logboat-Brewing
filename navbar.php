@@ -13,28 +13,30 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="<?php echo getBaseUrl(); ?>ingredient/showAll.php">Inventory</a></li>
-        <li><a href="#">Orders</a></li>
-        <li><a href="<?php echo getBaseUrl(); ?>schedule/showCalendar.php">Scheduling</a></li>
-        <li><a href="#">Analytics</a></li>
-        <li><a href="#">Keg Rentals</a></li>
-        <li><a href="#">Reports</a></li>
-        
-        <?php if(isUserAdmin()) { ?>
-            
-        <li><a href="<?= getBaseUrl(); ?>user/users.php">Users</a></li>
-        
-        <?php } ?>
-        
+        <li><a href="<?= getBaseUrl(); ?>ingredient/showAll.php">Inventory</a></li>
+        <li><a href="<?= getBaseUrl(); ?>schedule/showCalendar.php">Scheduling</a></li>
+        <li><a href="<?= getBaseUrl(); ?>construction.php">Recipes</a></li>
+        <li><a href="<?= getBaseUrl(); ?>construction.php">Keg Rentals</a></li>
+        <li><a href="<?= getBaseUrl(); ?>construction.php">Reports</a></li>
+        <li><a href="<?= getBaseUrl(); ?>construction.php">Analytics</a></li>
       </ul>
+        
       <ul class="nav navbar-nav navbar-right">
           <?php if(!isLoggedIn()) { ?>
           
           <li><a href="<?= getBaseUrl() ?>user/login.php">Login</a></li>
             
           <?php } else { ?>
+        
+            <?php if(isUserAdmin()) { ?>
+
+            <li><a href="<?= getBaseUrl(); ?>user/users.php">Users</a></li>
+
+            <li style="padding:15px">|</li>
+
+            <?php } ?>
             
-            <li style="height:50px">
+            <li style="height:50px; padding:0px 15px">
                 <div class="center-vertical">
                     <p class="center-block text-center" style="margin:0">Logged in as:</p>
                     <a class="center-block text-center" style="padding:0" href="#"><?= $_SESSION['username'] ?></a>

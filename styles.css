@@ -38,3 +38,6 @@
     transform: translateX(-50%);
 }
 
+.vertical-line {
+    border-left: thick solid black;
+}
