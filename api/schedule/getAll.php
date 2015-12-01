@@ -35,6 +35,7 @@ $events = Database::runQuery(
 
 foreach($events as $event) {
 		$returnJSON[] = array(  'title'     => $event['beerName'] . " " .$event['brewId'],
+														'id'				=> $event['brewId'],
 														'start'     => $event['brewStart'],
 														'end'       => $event['brewEnd'],
 														'editable'  => ($event['userid']) == $_SESSION['userId'] ? true : false);
