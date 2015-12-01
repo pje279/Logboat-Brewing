@@ -15,7 +15,7 @@ if(!isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 //Get all of the rows
-                $.get("../api/ingredient/getAll.php", function(data) {
+                $.getJSON("../api/ingredient/getAll.php", function(data) {
                     $("#showAllLoading").fadeOut("slow", function() {
                         for(var i = 0, len = data.result.length; i < len; i++) {
                             $("#getAllTable").append("<tr data-ingredientId='" + data.result[i].id + "'><td>" +
