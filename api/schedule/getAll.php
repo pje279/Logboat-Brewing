@@ -42,4 +42,3 @@ foreach($events as $event) {
 }
 
 echo json_encode($returnJSON);
-?>

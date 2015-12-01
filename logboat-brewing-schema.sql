@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS fermentation;
 DROP TABLE IF EXISTS fermentationType;
 DROP TABLE IF EXISTS kegOrder;
 DROP TABLE IF EXISTS customer;
+DROP TABLE IF EXISTS keg;
 DROP TABLE IF EXISTS brew;
 DROP TABLE IF EXISTS beer;
 DROP TABLE IF EXISTS beerType;
@@ -163,6 +164,7 @@ CREATE TABLE fermentation (
     FOREIGN KEY (userId) REFERENCES user (id)
 ) ENGINE=INNODB;
 
+
 /**
  * Customer
  */
@@ -178,6 +180,27 @@ CREATE TABLE customer (
     zipCode varchar(5) NOT NULL
 ) ENGINE=INNODB;
 
+INSERT INTO customer VALUES
+    (DEFAULT, 'Seth', 'vonSeggern', '555-555-5555', 'seth@email.com', 'Mizzou', 'Columbia', 'MO', '65201'),
+    (DEFAULT, 'Jacob', 'Muchow', '123-456-7890', 'jacob@email.com', 'Mizzou', 'Colubmia', 'MO', '65203');
+
+/**
+ * Keg
+ */
+CREATE TABLE keg (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    serialNum varchar(50) NOT NULL
+) ENGINE=INNODB;
+
+INSERT INTO keg VALUES
+    (DEFAULT, 'N9TT-9G0A-B7FQ-RANC'),
+    (DEFAULT, 'QK6A-JI6S-7ETR-0A6C'),
+    (DEFAULT, 'SXFP-CHYK-ONI6-S89U'),
+    (DEFAULT, 'XNSS-HSJW-3NGU-8XTJ'),
+    (DEFAULT, 'NHLE-L6MI-4GE4-ETEV'),
+    (DEFAULT, '6ETI-UIL2-9WAX-XHYO');
+
+
 /**
  * KegOrder
  */
@@ -185,10 +208,17 @@ CREATE TABLE kegOrder (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     pickupDate datetime NOT NULL,
     returnDate datetime NOT NULL,
+    returned boolean NOT NULL DEFAULT false,
     customerId int NOT NULL,
+    kegId int NOT NULL,
     brewId int NOT NULL,
     userId smallint NOT NULL,
     FOREIGN KEY (customerId) REFERENCES customer (id),
+    FOREIGN KEY (kegId) REFERENCES keg (id),
     FOREIGN KEY (brewId) REFERENCES brew (id),
     FOREIGN KEY (userId) REFERENCES user (id)
 ) ENGINE=INNODB;
+
+INSERT INTO kegOrder VALUES
+    (DEFAULT, '2015-11-25 00:00:00', '2015-12-04 00:00:00', false, 1, 1, 1, 1),
+    (DEFAULT, '2015-12-02 13:00:00', '2015-12-08 14:00:00', false, 11, 11, 11, 1);
