@@ -22,6 +22,11 @@ if(!isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 $("#calendar").fullCalendar({
+                    header: {
+        				left: 'prev,next today',
+        				center: 'title',
+        				right: 'month,basicWeek,basicDay'
+        			},
                     events: "../api/schedule/getAll.php"
                 });
             });
