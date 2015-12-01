@@ -15,7 +15,7 @@
       <ul class="nav navbar-nav">
         <li><a href="<?php echo getBaseUrl(); ?>ingredient/showAll.php">Inventory</a></li>
         <li><a href="#">Orders</a></li>
-        <li><a href="#">Scheduling</a></li>
+        <li><a href="<?php echo getBaseUrl(); ?>schedule/showCalendar.php">Scheduling</a></li>
         <li><a href="#">Analytics</a></li>
         <li><a href="#">Keg Rentals</a></li>
         <li><a href="#">Reports</a></li>
