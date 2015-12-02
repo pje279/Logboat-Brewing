@@ -9,8 +9,8 @@ if(!isLoggedIn()) {
 
 //Beer attributes
 $name = htmlspecialchars($_POST['name']);
-$createdBy = htmlspecialchars($_SESSION['userId']);
 $beerTypeId = htmlspecialchars($_POST['beerTypeId']);
+$createdBy = htmlspecialchars($_SESSION['userId']);
 
 $query = 'INSERT INTO beer VALUES (DEFAULT, ?, ?, ?)';
 

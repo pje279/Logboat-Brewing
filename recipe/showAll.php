@@ -15,8 +15,6 @@ if(!isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 
-                console.log("<?= $stuff ?>");
-                
                 //Get all of the rows
                 $.getJSON("../api/beer/getAll.php", function(data) {
                     
@@ -35,7 +33,6 @@ if(!isLoggedIn()) {
                         //Set all the rows to open modal
                         $("#getAllTable tr").each(function() {
                             $(this).click(function() {
-                                console.log("Clicked");
                                 $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
                                 $("#updateModal").modal('toggle');
                                 $.get("updateModal.php", {"beerId": $(this).attr("data-beerId")}, function(data) {
@@ -70,11 +67,12 @@ if(!isLoggedIn()) {
                         
                     } else {
                         $.post("<?= getBaseUrl(); ?>api/beer/create.php", $("#createBeerRecipeForm").serialize() , function(jsonData) {
+                            
                             if(jsonData.success === false) {
+                                console.log(jsonData);
                                 showError(jsonData.error);
                             } else {
-                                console.log(jsonData);
-                                //window.location = "../recipe/showAll.php";
+                                window.location = "../recipe/showAll.php";
                             }
                         });
                     }
@@ -82,46 +80,35 @@ if(!isLoggedIn()) {
                 
                 //Modal update button clicked
                 $(".modalSave").click(function() {
-                    if($("#updateBeerRecipeForm input#name").val() === '') {
-                        $("#errorMessage")
-                            .html("Please Enter an Ingredient Name")
-                            .slideDown("fast")
-                            .delay(10000)
-                            .slideUp(1000);
+                
+                    var name = $("#updateBeerRecipeForm input#name").val();
                     
-                    } else if ($("#updateBeerRecipeForm input#name").val().length > 100) {
-                        $("#errorMessage")
-                            .html("Ingredient Name can be no longer than 100 characters")
-                            .slideDown("fast")
-                            .delay(10000)
-                            .slideUp(1000);
+                    if(name === '') {
+                        showError("Please enter a name for the recipe");
                     
                     } else {
-                        $.post("<?= getBaseUrl(); ?>api/beer/update.php", $("#updateIngredientForm").serialize(), function(jsonData) {
+                        $.post("<?= getBaseUrl(); ?>api/beer/update.php", $("#updateBeerRecipeForm").serialize(), function(jsonData) {
+                            
                             if(jsonData.success === false) {
-                                $("#errorMessage")
-                                    .html(jsonData.error)
-                                    .slideDown("fast")
-                                    .delay(10000)
-                                    .slideUp(1000);
+                                console.log(jsonData);
+                                showError(jsonData.error);
                             } else {
-                                window.location = "../ingredient/showAll.php";
+                                window.location = "../recipe/showAll.php";
                             }
                         });
                     }
                 });
                 
+                //Modal delete button clicked
                 $(".modalDelete").click(function() {
-                    if(confirm("Are you sure you want to delete this ingredient? This is not reversable!")) {
-                        $.post("../api/ingredient/delete.php", {"id":$("#updateIngredientForm > #ingredientId").val()} , function(jsonData) {
+                    if(confirm("Are you sure you want to delete this recipe? This is not reversable!")) {
+                        $.post("<?= getBaseUrl(); ?>api/beer/delete.php", {"beerId":$("#updateBeerRecipeForm > #beerId").val()} , function(jsonData) {
+                            
                             if(jsonData.success === false) {
-                                $("#errorMessage")
-                                    .html(jsonData.error)
-                                    .slideDown("fast")
-                                    .delay(10000)
-                                    .slideUp(1000);
+                                console.log(jsonData);
+                                showError(jsonData.error);
                             } else {
-                                window.location = "../ingredient/showAll.php";
+                                window.location = "../recipe/showAll.php";
                             }
                         });
                     }
@@ -132,7 +119,7 @@ if(!isLoggedIn()) {
                             .html(error)
                             .slideDown("fast")
                             .delay(10000)
-                            .slideUP(1000);
+                            .slideUp(1000);
                 }
             });
         </script>

@@ -20,16 +20,3 @@ if($stmt->execute()) {
 } else {
     fail($stmt->error);
 }
-
-
-/* From Jacob */
-// if(($result = $link->query($query))) {
-   
-//     $stmt->bind_param("ssddd", $name, $supplier, $quantity, $unitId, $id);
-    
-//     if($stmt->execute()) {
-//         success();
-//     }
-// }
-
-// fail("Error updating ingredient");
