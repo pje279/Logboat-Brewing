@@ -39,7 +39,7 @@
             <li style="height:50px; padding:0px 15px">
                 <div class="center-vertical">
                     <p class="center-block text-center" style="margin:0">Logged in as:</p>
-                    <a class="center-block text-center" style="padding:0" href="#"><?= $_SESSION['username'] ?></a>
+                    <a class="center-block text-center" style="padding:0" href="<?= getBaseUrl(); ?>user/user.php?id=<?= $_SESSION['userId']; ?>"><?= $_SESSION['username'] ?></a>
                 </div>
             </li>
             <li><a href="<?= getBaseUrl() ?>api/user/logout.php">Logout</a></li>

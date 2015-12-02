@@ -15,6 +15,11 @@ function isUserAdmin() {
     return isLoggedIn() && $_SESSION['isAdmin'];
 }
 
+function redirect($relativePathFromBaseUrl = '') {
+    header("Location: " . getBaseUrl() . $relativePathFromBaseUrl);
+    exit();
+}
+
 function getBaseUrl() {
     //return "https://cs3380-jam9rd.cloudapp.net/LogboatBrewing/";    //Jacob
     //return "https://logboat-brewing-percyodi.c9.io/Logboat-Brewing/"; //Pearse
