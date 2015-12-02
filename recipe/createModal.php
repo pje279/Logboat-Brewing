@@ -7,15 +7,15 @@ require '../utilities/tools.php';
     <div id="errorMessage" class="alert alert-danger text-center" role="alert" style="display: none;"></div>
     <div class="form-group">
         <label for="name">Beer Name</label>
-        <input type="text" class="form-control" id="name" name="name" maxlength="100" required>
+        <input type="text" class="form-control" id="name" name="name" maxlength="50" required>
     </div>
     <div class="form-group">
         <label for="beerTypeId">Beer Type</label>
         <select name="beerTypeId" class="form-control">
             <?php 
-            $units = Database::runQuery("SELECT * FROM beerType ORDER BY name");
-            foreach($units as $unit) {
-                echo "<option value='{$unit['id']}'>{$unit['name']}</option>";
+            $beerTypes = Database::runQuery("SELECT * FROM beerType ORDER BY name");
+            foreach($beerTypes as $beerType) {
+                echo "<option value='{$beerType['id']}'>{$beerType['name']}</option>";
             }
             ?>
         </select>

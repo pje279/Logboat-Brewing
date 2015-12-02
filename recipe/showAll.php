@@ -14,6 +14,9 @@ if(!isLoggedIn()) {
         
         <script>
             $(document).ready(function() {
+                
+                console.log("<?= $stuff ?>");
+                
                 //Get all of the rows
                 $.getJSON("../api/beer/getAll.php", function(data) {
                     
@@ -35,7 +38,7 @@ if(!isLoggedIn()) {
                                 console.log("Clicked");
                                 $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
                                 $("#updateModal").modal('toggle');
-                                $.get("updateModal.php", {"beerId": $(this).attr("data-ingredientId")}, function(data) {
+                                $.get("updateModal.php", {"beerId": $(this).attr("data-beerId")}, function(data) {
                                     $("#updateModal .modal-body div").fadeOut("slow", function() {
                                         $("#updateModal .modal-body").hide().html(data).slideDown("slow");
                                     });
@@ -57,7 +60,27 @@ if(!isLoggedIn()) {
                     });
                 });
                 
-                // Set modal buttons
+                //Modal create button clicked
+                $(".modalCreate").click(function() {
+                    
+                    var name = $("#createBeerRecipeForm input#name").val();
+                    
+                    if(name === '') {
+                        showError("Please enter a name for the recipe");
+                        
+                    } else {
+                        $.post("<?= getBaseUrl(); ?>api/beer/create.php", $("#createBeerRecipeForm").serialize() , function(jsonData) {
+                            if(jsonData.success === false) {
+                                showError(jsonData.error);
+                            } else {
+                                console.log(jsonData);
+                                //window.location = "../recipe/showAll.php";
+                            }
+                        });
+                    }
+                });
+                
+                //Modal update button clicked
                 $(".modalSave").click(function() {
                     if($("#updateBeerRecipeForm input#name").val() === '') {
                         $("#errorMessage")
@@ -74,7 +97,7 @@ if(!isLoggedIn()) {
                             .slideUp(1000);
                     
                     } else {
-                        $.post("../api/ingredient/update.php", $("#updateIngredientForm").serialize(), function(jsonData) {
+                        $.post("<?= getBaseUrl(); ?>api/beer/update.php", $("#updateIngredientForm").serialize(), function(jsonData) {
                             if(jsonData.success === false) {
                                 $("#errorMessage")
                                     .html(jsonData.error)
@@ -104,35 +127,13 @@ if(!isLoggedIn()) {
                     }
                 });
                 
-                $(".modalCreate").click(function() {
-                    if($("#createBeerRecipeForm input#name").val() == '') {
-                        $("#errorMessage")
-                            .html("Please Enter a Keg Serial Number")
+                function showError(error) {
+                    $("#errorMessage")
+                            .html(error)
                             .slideDown("fast")
                             .delay(10000)
-                            .slideUp(1000);
-                    
-                    } else if ($("#createBeerRecipeForm input#name").val().length > 50) {
-                        $("#errorMessage")
-                            .html("Serial Number can be no longer than 50 characters")
-                            .slideDown("fast")
-                            .delay(10000)
-                            .slideUp(1000);
-                    
-                    } else {
-                        $.post("<?= getBaseUrl(); ?>api/beer/create.php", $("#createBeerRecipeForm").serialize() , function(jsonData) {
-                            if(jsonData.success === false) {
-                                $("#errorMessage")
-                                    .html(jsonData.error)
-                                    .slideDown("fast")
-                                    .delay(10000)
-                                    .slideUp(1000);
-                            } else {
-                                window.location = "../recipe/showAll.php";
-                            }
-                        });
-                    }
-                });
+                            .slideUP(1000);
+                }
             });
         </script>
     </head>

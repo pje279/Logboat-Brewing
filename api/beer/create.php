@@ -7,9 +7,10 @@ if(!isLoggedIn()) {
     fail("Only logged in users can create beer recipes");
 }
 
+//Beer attributes
 $name = htmlspecialchars($_POST['name']);
-$createdBy = $_SESSION['userId'];
-$beerTypeId = $_POST['beerTypeId'];
+$createdBy = htmlspecialchars($_SESSION['userId']);
+$beerTypeId = htmlspecialchars($_POST['beerTypeId']);
 
 $query = 'INSERT INTO beer VALUES (DEFAULT, ?, ?, ?)';
 
