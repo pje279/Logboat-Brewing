@@ -57,28 +57,20 @@ if(!isLoggedIn()) {
                     });
                 });
                 
-                // Set modal buttons
-                $(".modalSave").click(function() {
-                    if($("#updateIngredientForm input#name").val() == '') {
-                        $("#errorMessage")
-                            .html("Please Enter an Ingredient Name")
-                            .slideDown("fast")
-                            .delay(10000)
-                            .slideUp(1000);
-                    } else if ($("#updateIngredientForm input#name").val().length > 100) {
-                        $("#errorMessage")
-                            .html("Ingredient Name can be no longer than 100 characters")
-                            .slideDown("fast")
-                            .delay(10000)
-                            .slideUp(1000);
+                //Modal create button clicked
+                $(".modalCreate").click(function() {
+                    
+                    var name = $("#createIngredientForm input#name").val();
+                    
+                    if(name === '') {
+                        showError("Please enter an ingredient name");
+                        
                     } else {
-                        $.post("../api/ingredient/update.php", $("#updateIngredientForm").serialize(), function(jsonData) {
+                        $.post("<?= getBaseUrl(); ?>api/ingredient/create.php", $("#createIngredientForm").serialize() , function(jsonData) {
+                            
                             if(jsonData.success === false) {
-                                $("#errorMessage")
-                                    .html(jsonData.error)
-                                    .slideDown("fast")
-                                    .delay(10000)
-                                    .slideUp(1000);
+                                console.log(jsonData);
+                                showError(jsonData.error);
                             } else {
                                 window.location = "../ingredient/showAll.php";
                             }
@@ -86,15 +78,35 @@ if(!isLoggedIn()) {
                     }
                 });
                 
+                //Modal save button clicked
+                $(".modalSave").click(function() {
+                
+                    var name = $("#updateIngredientForm input#name").val();
+                    
+                    if(name === '') {
+                        showError("Please enter an ingredient name");
+                        
+                    } else {
+                        $.post("<?= getBaseUrl(); ?>api/ingredient/update.php", $("#updateIngredientForm").serialize(), function(jsonData) {
+                            
+                            if(jsonData.success === false) {
+                                console.log(jsonData);
+                                showError(jsonData.error);
+                            } else {
+                                window.location = "../ingredient/showAll.php";
+                            }
+                        });
+                    }
+                });
+                
+                //Modal delete button clicked
                 $(".modalDelete").click(function() {
                     if(confirm("Are you sure you want to delete this ingredient? This is not reversable!")) {
-                        $.post("../api/ingredient/delete.php", {"id":$("#updateIngredientForm > #ingredientId").val()} , function(jsonData) {
+                        $.post("<?= getBaseUrl(); ?>api/ingredient/delete.php", {"id":$("#updateIngredientForm > #ingredientId").val()} , function(jsonData) {
+                            
                             if(jsonData.success === false) {
-                                $("#errorMessage")
-                                    .html(jsonData.error)
-                                    .slideDown("fast")
-                                    .delay(10000)
-                                    .slideUp(1000);
+                                console.log(jsonData);
+                                showError(jsonData.error);
                             } else {
                                 window.location = "../ingredient/showAll.php";
                             }
@@ -102,33 +114,13 @@ if(!isLoggedIn()) {
                     }
                 });
                 
-                $(".modalCreate").click(function() {
-                    if($("#createIngredientForm input#name").val() == '') {
-                        $("#errorMessage")
-                            .html("Please Enter an Ingredient Name")
+                function showError(error) {
+                    $("#errorMessage")
+                            .html(error)
                             .slideDown("fast")
                             .delay(10000)
                             .slideUp(1000);
-                    } else if ($("#createIngredientForm input#name").val().length > 100) {
-                        $("#errorMessage")
-                            .html("Ingredient Name can be no longer than 100 characters")
-                            .slideDown("fast")
-                            .delay(10000)
-                            .slideUp(1000);
-                    } else {
-                        $.post("../api/ingredient/create.php", $("#createIngredientForm").serialize() , function(jsonData) {
-                            if(jsonData.success === false) {
-                                $("#errorMessage")
-                                    .html(jsonData.error)
-                                    .slideDown("fast")
-                                    .delay(10000)
-                                    .slideUp(1000);
-                            } else {
-                                window.location = "../ingredient/showAll.php";
-                            }
-                        });
-                    }
-                });
+                }
             });
         </script>
     </head>
