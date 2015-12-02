@@ -121,14 +121,14 @@ if(!isLoggedIn()) {
                 //Create Brew button
                 $(".modalCreate").click(function() {
                     $.post("../api/schedule/create.php", $("#createBrewForm").serialize(), function(jsonData) {
-                        if(jsonData.hasOwnProperty('success') || jsonData.success !== true) {
-                                $("#errorMessage")
-                                .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
-                                .slideDown("fast")
-                                .delay(10000)
-                                .slideUp(1000);
+                        if(jsonData.hasOwnProperty('success') && jsonData.success === true) {
+                            window.location = "../schedule/showCalendar.php";
                         } else {
-                            window.location = "showCalendar.php";
+                            $("#errorMessage")
+                            .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
+                            .slideDown("fast")
+                            .delay(10000)
+                            .slideUp(1000);
                         }
                     });
                 });
@@ -136,14 +136,14 @@ if(!isLoggedIn()) {
                 // Set modal buttons
                 $(".modalSave").click(function() {
                     $.post("../api/schedule/update.php", $("#updateBrewForm").serialize(), function(jsonData) {
-                        if(jsonData.hasOwnProperty('success') || jsonData.success !== true) {
-                                $("#errorMessage")
-                                .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
-                                .slideDown("fast")
-                                .delay(10000)
-                                .slideUp(1000);
-                        } else {
+                        if(jsonData.hasOwnProperty('success') && jsonData.success === true) {
                             window.location = "../schedule/showCalendar.php";
+                        } else {
+                            $("#errorMessage")
+                            .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
+                            .slideDown("fast")
+                            .delay(10000)
+                            .slideUp(1000);
                         }
                     });
                 });
@@ -155,10 +155,10 @@ if(!isLoggedIn()) {
                                 window.location = "../schedule/showCalendar.php";
                             } else {
                                 $("#errorMessage")
-                                    .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
-                                    .slideDown("fast")
-                                    .delay(10000)
-                                    .slideUp(1000);
+                                .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
+                                .slideDown("fast")
+                                .delay(10000)
+                                .slideUp(1000);
                             }
                         });
                     }
