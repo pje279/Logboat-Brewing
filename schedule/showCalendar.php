@@ -78,10 +78,10 @@ if(!isLoggedIn()) {
                 $("#calendarSave").click(function() {
                     //console.log(JSON.stringify($("#calendar").fullCalendar('clientEvents')));
                     $.post("../api/schedule/saveFullCalendar.php", {"events": JSON.stringify($("#calendar").fullCalendar('clientEvents'))}, function(data) {
-                        if(data.success !== true) {
-                                alert("Error: Could not save Calendar. Sorry.");
-                            } else {
+                        if(data.hasOwnProperty('success') && data.success === true) {
                                 window.location = "../schedule/showCalendar.php";
+                            } else {
+                                alert("Error: Could not save Calendar. Sorry.");
                             }
                     });
                 });
@@ -121,7 +121,7 @@ if(!isLoggedIn()) {
                 //Create Brew button
                 $(".modalCreate").click(function() {
                     $.post("../api/schedule/create.php", $("#createBrewForm").serialize(), function(jsonData) {
-                        if(jsonData.hasOwnProperty('success') && jsonData.success !== true) {
+                        if(jsonData.hasOwnProperty('success') || jsonData.success !== true) {
                                 $("#errorMessage")
                                 .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
                                 .slideDown("fast")
@@ -136,7 +136,7 @@ if(!isLoggedIn()) {
                 // Set modal buttons
                 $(".modalSave").click(function() {
                     $.post("../api/schedule/update.php", $("#updateBrewForm").serialize(), function(jsonData) {
-                        if(jsonData.hasOwnProperty('success') && jsonData.success !== true) {
+                        if(jsonData.hasOwnProperty('success') || jsonData.success !== true) {
                                 $("#errorMessage")
                                 .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
                                 .slideDown("fast")
