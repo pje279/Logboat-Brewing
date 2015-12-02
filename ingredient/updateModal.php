@@ -11,7 +11,7 @@ $data = $data[0]; // Grab the first result (should only be one)
     <div id="errorMessage" class="alert alert-danger text-center" role="alert" style="display: none;"></div>
     <div class="form-group">
         <label for="name">Ingredient Name</label>
-        <input type="text" class="form-control" id="name" name="name" maxlength="100" required value="<?php echo $data['name']; ?>">
+        <input type="text" class="form-control" id="name" name="name" maxlength="30" required value="<?php echo $data['name']; ?>">
     </div>
     <div class="form-group">
         <label for="supplier">Supplier</label>
