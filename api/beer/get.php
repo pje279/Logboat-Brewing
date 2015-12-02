@@ -3,7 +3,13 @@
 require '../init.php';
 require '../tools.php';
 
-$query = 
+if(!isLoggedIn()) {
+    fail("Only logged in users can get recipes");
+}
+
+$beerId = htmlspecialchars($_GET['beerId']);
+
+$query =
     "SELECT 
         beer.id,
         beer.name,
@@ -23,10 +29,13 @@ $query =
         AS beer
     INNER JOIN user
         ON beer.createdBy = user.id
-    ORDER BY beer.name";
+    WHERE beer.id= :id
+    LIMIT 1";
 
-if(($data = Database::runQuery($query))) {
-    success($data);
+$bind_params = array("id" => $beerId);
+
+if(($data = Database::runQuery($query, $bind_params))) {
+    success($data[0]);
 }
 
-fail("Error in beer/getAll.php");
+fail("Error in beer/get.php");

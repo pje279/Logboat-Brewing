@@ -23,7 +23,7 @@ if(($stmt = $link->prepare($query))) {
         fail("User does not exist");
     }
     
-    fail("Error deleting user");
+    fail("Error deleting user: " . $stmt->error);
 }
 
 fail("Error deleting user");

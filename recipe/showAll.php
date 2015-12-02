@@ -15,26 +15,27 @@ if(!isLoggedIn()) {
         <script>
             $(document).ready(function() {
                 //Get all of the rows
-                $.getJSON("../api/ingredient/getAll.php", function(data) {
+                $.getJSON("../api/beer/getAll.php", function(data) {
+                    
                     $("#showAllLoading").fadeOut("slow", function() {
-                        for(var i = 0, len = data.result.length; i < len; i++) {
-                            $("#getAllTable").append("<tr data-ingredientId='" + data.result[i].id + "'><td>" +
-                                                     data.result[i].name +
+                        
+                        data.result.forEach(function(beer) {
+                            $("#getAllTable").append("<tr data-beerId='" + beer.id + "'><td>" +
+                                                     beer.name +
                                                      "</td><td>" +
-                                                     data.result[i].supplier +
+                                                     beer.beerType +
                                                      "</td><td>" + 
-                                                     data.result[i].quantity +
-                                                     "</td><td>" +
-                                                     data.result[i].unitName +
+                                                     beer.username +
                                                      "</td></tr>");
-                        }
-                        // Set all the rows to open modal
+                        });
+                        
+                        //Set all the rows to open modal
                         $("#getAllTable tr").each(function() {
                             $(this).click(function() {
                                 console.log("Clicked");
                                 $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
                                 $("#updateModal").modal('toggle');
-                                $.get("updateModal.php", {"ingredientId": $(this).attr("data-ingredientId")}, function(data) {
+                                $.get("updateModal.php", {"beerId": $(this).attr("data-ingredientId")}, function(data) {
                                     $("#updateModal .modal-body div").fadeOut("slow", function() {
                                         $("#updateModal .modal-body").hide().html(data).slideDown("slow");
                                     });
@@ -42,6 +43,10 @@ if(!isLoggedIn()) {
                             });
                         });
                     });
+                });
+                
+                $.getJSON("<?= getBaseUrl(); ?>api/beer/get.php?beerId=1", function(data) {
+                    console.log(data);
                 });
                 
                 //Set Create Modal links
@@ -135,14 +140,9 @@ if(!isLoggedIn()) {
         <?php require '../navbar.php'; ?>
         <div class="container">
             <div class="row">
-                <a href="<?php echo getBaseUrl(); ?>ingredient/create.php" class="callCreateModal">Add a New Keg</a>
+                <a href="<?php echo getBaseUrl(); ?>recipe/create.php" class="callCreateModal">Add a New Beer Recipe</a>
                 <table id="getAllTable" class="table table-hover">
-                <?php
-                
-                echo "<th>Keg Serial Num</th><th>Keg Order ID</th><th>Current Customer ID</th>";
-                
-                
-                ?>
+                    <th>Beer Name</th><th>Type</th><th>Created By</th>
                 </table>
                 <div id="showAllLoading" style="text-align: center;"><i class="fa fa-beer fa-spin fa-5x text-center"></i></div>
             </div>
@@ -154,12 +154,12 @@ if(!isLoggedIn()) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="modalLabel">Update Ingredient Form</h4>
+                        <h4 class="modal-title" id="modalLabel">Update Beer Recipe Form</h4>
                     </div>
                     <div class="modal-body"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close Without Saving</button>
-                        <button type="button" class="modalDelete btn btn-danger">Delete Ingredient</button> 
+                        <button type="button" class="modalDelete btn btn-danger">Delete Recipe</button> 
                         <button type="button" class="modalSave btn btn-primary">Save changes</button>
                     </div>
                 </div>
@@ -172,12 +172,12 @@ if(!isLoggedIn()) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="modalLabel">New Ingredient Form</h4>
+                        <h4 class="modal-title" id="modalLabel">New Beer Recipe Form</h4>
                     </div>
                     <div class="modal-body"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close Without Saving</button>
-                        <button type="button" class="modalCreate btn btn-primary">Create Ingredient</button>
+                        <button type="button" class="modalCreate btn btn-primary">Create Recipe</button>
                     </div>
                 </div>
             </div>
