@@ -38,6 +38,6 @@ foreach($events as $event) {
     } catch (PDOException $e) {
         fail("Error in api/schedule/saveFullCalendar.php: " . $e->getMessage());
     }
-    
-    success();
 }
+
+success();

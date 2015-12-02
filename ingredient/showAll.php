@@ -32,7 +32,7 @@ if(!isLoggedIn()) {
                         $("#getAllTable tr").each(function() {
                             $(this).click(function() {
                                 console.log("Clicked");
-                                $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-circle-o-notch fa-spin fa-5x text-center'></i></div>");
+                                $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
                                 $("#updateModal").modal('toggle');
                                 $.get("updateModal.php", {"ingredientId": $(this).attr("data-ingredientId")}, function(data) {
                                     $("#updateModal .modal-body div").fadeOut("slow", function() {
@@ -48,7 +48,7 @@ if(!isLoggedIn()) {
                 //Set Create Modal links
                 $(".callCreateModal").click(function(e) {
                     e.preventDefault();
-                    $("#createModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-circle-o-notch fa-spin fa-5x text-center'></i></div>");
+                    $("#createModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
                     $("#createModal").modal('toggle');
                     $.get("createModal.php", function(data) {
                         $("#createModal .modal-body div").fadeOut("slow", function() {
@@ -145,7 +145,7 @@ if(!isLoggedIn()) {
                 
                 ?>
                 </table>
-                <div id="showAllLoading" style="text-align: center;"><i class="fa fa-circle-o-notch fa-spin fa-5x text-center"></i></div>
+                <div id="showAllLoading" style="text-align: center;"><i class="fa fa-beer fa-spin fa-5x text-center"></i></div>
             </div>
         </div>
         

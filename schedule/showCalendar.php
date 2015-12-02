@@ -24,38 +24,40 @@ if(!isLoggedIn()) {
         
         <script>
             function clickEvent(calEvent) {
-                $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
-                $("#updateModal").modal("toggle");
-                $.get("updateModal.php", {"brewId": calEvent.id}, function(data) {
-                    $("#updateModal .modal-body div").fadeOut("slow", function() {
-                        $("#updateModal .modal-body").hide().html(data).slideDown("slow");
-                        
-                        //Datepicker Options
-                        $(".datepicker").datetimepicker({
-                            showTodayButton: true,
-                            showClose: true
-                        });
-                        
-                        //Set event dates
-                        $("#startDatepicker").data("DateTimePicker").date(new Date($("#startDatepicker").attr("data-givenDate")));
-                        $("#endDatepicker").data("DateTimePicker").date(new Date($("#endDatepicker").attr("data-givenDate")));
-                        //Datepicker Validation
-                        $("#startDatepicker").on("dp.change", function(e) {
-                            if($("#startDatepicker input").val() != "") {
-                                $("#endDatepicker").data("DateTimePicker").enable();
-                                $("#endDatepicker").data("DateTimePicker").minDate($("#startDatepicker").data("DateTimePicker").date());
-                            } else {
-                                $("#endDatepicker input").val("");
-                                $("#endDatepicker").data("DateTimePicker").disable();
-                            }
-                        });
-                        
-                        //Set an event to empty the modal when it closes
-                        $("#updateModal").on("hidden.bs.modal", function(e) {
-                            $("#updateModal .modal-body").empty();
+                if(calEvent.editable === true) {
+                    $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
+                    $("#updateModal").modal("toggle");
+                    $.get("updateModal.php", {"brewId": calEvent.id}, function(data) {
+                        $("#updateModal .modal-body div").fadeOut("slow", function() {
+                            $("#updateModal .modal-body").hide().html(data).slideDown("slow");
+                            
+                            //Datepicker Options
+                            $(".datepicker").datetimepicker({
+                                showTodayButton: true,
+                                showClose: true
+                            });
+                            
+                            //Set event dates
+                            $("#startDatepicker").data("DateTimePicker").date(new Date($("#startDatepicker").attr("data-givenDate")));
+                            $("#endDatepicker").data("DateTimePicker").date(new Date($("#endDatepicker").attr("data-givenDate")));
+                            //Datepicker Validation
+                            $("#startDatepicker").on("dp.change", function(e) {
+                                if($("#startDatepicker input").val() != "") {
+                                    $("#endDatepicker").data("DateTimePicker").enable();
+                                    $("#endDatepicker").data("DateTimePicker").minDate($("#startDatepicker").data("DateTimePicker").date());
+                                } else {
+                                    $("#endDatepicker input").val("");
+                                    $("#endDatepicker").data("DateTimePicker").disable();
+                                }
+                            });
+                            
+                            //Set an event to empty the modal when it closes
+                            $("#updateModal").on("hidden.bs.modal", function(e) {
+                                $("#updateModal .modal-body").empty();
+                            });
                         });
                     });
-                });
+                }
             }
         
             $(document).ready(function() {
@@ -76,7 +78,11 @@ if(!isLoggedIn()) {
                 $("#calendarSave").click(function() {
                     //console.log(JSON.stringify($("#calendar").fullCalendar('clientEvents')));
                     $.post("../api/schedule/saveFullCalendar.php", {"events": JSON.stringify($("#calendar").fullCalendar('clientEvents'))}, function(data) {
-                        window.location = "showCalendar.php";
+                        if(data.success !== true) {
+                                alert("Error: Could not save Calendar. Sorry.");
+                            } else {
+                                window.location = "../schedule/showCalendar.php";
+                            }
                     });
                 });
                 
@@ -115,9 +121,9 @@ if(!isLoggedIn()) {
                 //Create Brew button
                 $(".modalCreate").click(function() {
                     $.post("../api/schedule/create.php", $("#createBrewForm").serialize(), function(jsonData) {
-                        if(jsonData.success !== true) {
+                        if(jsonData.hasOwnProperty('success') && jsonData.success !== true) {
                                 $("#errorMessage")
-                                .html(jsonData.hasOwnProperty(error) ? jsonData.error : "Error: Could Not Contact Server")
+                                .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
                                 .slideDown("fast")
                                 .delay(10000)
                                 .slideUp(1000);
@@ -130,9 +136,9 @@ if(!isLoggedIn()) {
                 // Set modal buttons
                 $(".modalSave").click(function() {
                     $.post("../api/schedule/update.php", $("#updateBrewForm").serialize(), function(jsonData) {
-                        if(jsonData.success !== true) {
+                        if(jsonData.hasOwnProperty('success') && jsonData.success !== true) {
                                 $("#errorMessage")
-                                .html(jsonData.hasOwnProperty(error) ? jsonData.error : "Error: Could Not Contact Server")
+                                .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
                                 .slideDown("fast")
                                 .delay(10000)
                                 .slideUp(1000);
@@ -144,15 +150,15 @@ if(!isLoggedIn()) {
                 
                 $(".modalDelete").click(function() {
                     if(confirm("Are you sure you want to delete this brew? This is not reversable!")) {
-                        $.post("../api/schedule/delete.php", {"id":$("#updateBrewForm > #brewId").val()} , function(jsonData) {
-                            if(jsonData.success !== true) {
+                        $.post("../api/schedule/delete.php", {"brewId":$("#updateBrewForm > #brewId").val()} , function(jsonData) {
+                            if(jsonData.hasOwnProperty('success') && jsonData.success === true) {
+                                window.location = "../schedule/showCalendar.php";
+                            } else {
                                 $("#errorMessage")
-                                    .html(jsonData.error ? jsonData.error : "Error: Could Not Contact Server")
+                                    .html(jsonData.hasOwnProperty('error') ? jsonData.error : "Error: Could Not Contact Server")
                                     .slideDown("fast")
                                     .delay(10000)
                                     .slideUp(1000);
-                            } else {
-                                window.location = "../schedule/showCalendar.php";
                             }
                         });
                     }

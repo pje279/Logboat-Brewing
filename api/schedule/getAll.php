@@ -25,20 +25,25 @@ $events = Database::runQuery(
 		beer ON beerid = beer.id
 	LEFT OUTER JOIN
 		`user` AS u ON userid = u.id
-	WHERE brewStart BETWEEN :start1 AND :end1
-	OR brewEnd BETWEEN :start2 AND :end2"
+	WHERE :start1 BETWEEN brewStart AND brewEnd
+	OR	:end1 BETWEEN brewStart AND brewEnd
+	OR brewStart BETWEEN :start2 AND :end2
+	OR brewEnd BETWEEN :start3 AND :end3"
 , array(    "start1" => $dateStart,
 						"start2" => $dateStart,
+						"start3" => $dateStart,
 						"end1" => $dateEnd,
-						"end2" => $dateEnd)
+						"end2" => $dateEnd,
+						"end3" => $dateEnd)
 );
 
 foreach($events as $event) {
-		$returnJSON[] = array(  'title'     => $event['beerName'] . " " .$event['brewId'],
+		$returnJSON[] = array(  'title'     => $event['beerName'] . " - " .$event['brewId'] . " - " . $event['username'],
 														'id'				=> $event['brewId'],
 														'start'     => $event['brewStart'],
 														'end'       => $event['brewEnd'],
-														'editable'  => ($event['userid']) == $_SESSION['userId'] ? true : false);
+														'editable'  => ($event['userid'] == $_SESSION['userId'] ? true : false),
+														'color'			=> ($event['userid'] == $_SESSION['userId'] ? "#337ab7" : "#7BA9D0"));
 }
 
 echo json_encode($returnJSON);
