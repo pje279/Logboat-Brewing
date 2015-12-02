@@ -15,7 +15,9 @@ if(!isLoggedIn()) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 </head>
 <body>
-  <?php require '../navbar.php'; ?>
+  <?php require '../navbar.php'; 
+  $dates = Database::runQuery("SELECT brewStart, brewEnd FROM brew where id= :id",array("id",$_POST['fermentationId']);
+  ?>
     <div class="container">
       <div class="form-group">
         <label for="value">Value</label>
