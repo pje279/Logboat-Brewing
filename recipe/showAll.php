@@ -45,10 +45,6 @@ if(!isLoggedIn()) {
                     });
                 });
                 
-                $.getJSON("<?= getBaseUrl(); ?>api/beer/get.php?beerId=1", function(data) {
-                    console.log(data);
-                });
-                
                 //Set Create Modal links
                 $(".callCreateModal").click(function(e) {
                     e.preventDefault();
@@ -63,18 +59,20 @@ if(!isLoggedIn()) {
                 
                 // Set modal buttons
                 $(".modalSave").click(function() {
-                    if($("#updateIngredientForm input#name").val() == '') {
+                    if($("#updateBeerRecipeForm input#name").val() === '') {
                         $("#errorMessage")
                             .html("Please Enter an Ingredient Name")
                             .slideDown("fast")
                             .delay(10000)
                             .slideUp(1000);
-                    } else if ($("#updateIngredientForm input#name").val().length > 100) {
+                    
+                    } else if ($("#updateBeerRecipeForm input#name").val().length > 100) {
                         $("#errorMessage")
                             .html("Ingredient Name can be no longer than 100 characters")
                             .slideDown("fast")
                             .delay(10000)
                             .slideUp(1000);
+                    
                     } else {
                         $.post("../api/ingredient/update.php", $("#updateIngredientForm").serialize(), function(jsonData) {
                             if(jsonData.success === false) {
@@ -107,20 +105,22 @@ if(!isLoggedIn()) {
                 });
                 
                 $(".modalCreate").click(function() {
-                    if($("#createKegForm input#serialNum").val() == '') {
+                    if($("#createBeerRecipeForm input#name").val() == '') {
                         $("#errorMessage")
                             .html("Please Enter a Keg Serial Number")
                             .slideDown("fast")
                             .delay(10000)
                             .slideUp(1000);
-                    } else if ($("#createKegForm input#serialNum").val().length > 50) {
+                    
+                    } else if ($("#createBeerRecipeForm input#name").val().length > 50) {
                         $("#errorMessage")
                             .html("Serial Number can be no longer than 50 characters")
                             .slideDown("fast")
                             .delay(10000)
                             .slideUp(1000);
+                    
                     } else {
-                        $.post("../api/keg/create.php", $("#createKegForm").serialize() , function(jsonData) {
+                        $.post("<?= getBaseUrl(); ?>api/beer/create.php", $("#createBeerRecipeForm").serialize() , function(jsonData) {
                             if(jsonData.success === false) {
                                 $("#errorMessage")
                                     .html(jsonData.error)
@@ -128,7 +128,7 @@ if(!isLoggedIn()) {
                                     .delay(10000)
                                     .slideUp(1000);
                             } else {
-                                window.location = "../keg/showAll.php";
+                                window.location = "../recipe/showAll.php";
                             }
                         });
                     }
