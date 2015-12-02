@@ -12,7 +12,7 @@
             }
           ?>
         </select>
-        <select name="fermentationType" class="form-control">
+        <select name="fermentationId" class="form-control">
           <?php
             $types = Database::runQuery("SELECT * from fermentationType");
             foreach($types as $type) {
