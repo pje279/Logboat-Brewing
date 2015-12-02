@@ -30,6 +30,7 @@ if(!isLoggedIn()) {
             </span>
         </div>
       </div>
+      <button type="button" class="btn btn-primary">Submit</button>
     </div>
 </body>
 </html>
