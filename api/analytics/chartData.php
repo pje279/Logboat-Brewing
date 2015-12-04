@@ -1,9 +1,5 @@
 <?php 
 
-$data = Database::runQuery(" ");
-foreach($data as $dataPoint) {
-  $dataFromDatabase[] = $data['value'];
-}
 $chartHeaders = Database::runQuery("SELECT dateTime FROM fermentation WHERE brewId = :brewId" array('brewId',$_POST['brewId']));
 $data = Database::runQuery("SELECT value FROM fermentation WHERE brewId = :brewId" array('brewId',$_POST['brewId']));
 $return['success'] = true;

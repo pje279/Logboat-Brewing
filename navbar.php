@@ -18,7 +18,7 @@
         <li><a href="<?= getBaseUrl(); ?>recipe/showAll.php">Recipes</a></li>
         <li><a href="<?= getBaseUrl(); ?>keg/showAll.php">Keg Rentals</a></li>
         <li><a href="<?= getBaseUrl(); ?>construction.php">Reports</a></li>
-        <li><a href="<?= getBaseUrl(); ?>construction.php">Analytics</a></li>
+        <li><a href="<?= getBaseUrl(); ?>analytics/selectBrew.php">Analytics</a></li>
       </ul>
         
       <ul class="nav navbar-nav navbar-right">

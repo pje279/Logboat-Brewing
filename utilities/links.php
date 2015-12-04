@@ -14,4 +14,4 @@
 <link rel="stylesheet" href="<?= getBaseUrl(); ?>styles.css?version=0.0.1">
 
 <!--- Chart JS -->
-<script src="http://oss.maxcdn.com/chart.js/2.0.0-beta1/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
