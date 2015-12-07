@@ -31,7 +31,7 @@ if(!isLoggedIn()) {
                         });
                         
                         //Set all the rows to open modal
-                        $("#getAllTable tr").each(function() {
+                        $("#getAllTable tbody tr").each(function() {
                             $(this).click(function() {
                                 $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
                                 $("#updateModal").modal('toggle');
@@ -42,6 +42,8 @@ if(!isLoggedIn()) {
                                 });
                             });
                         });
+                        
+                        $("#getAllTable").tablesorter();
                     });
                 });
                 
@@ -130,7 +132,10 @@ if(!isLoggedIn()) {
             <div class="row">
                 <a href="<?php echo getBaseUrl(); ?>recipe/create.php" class="callCreateModal">Add a New Beer Recipe</a>
                 <table id="getAllTable" class="table table-hover">
-                    <th>Beer Name</th><th>Type</th><th>Created By</th>
+                    <thead>
+                        <th>Beer Name</th><th>Type</th><th>Created By</th>
+                    </thead>
+                    <tbody>
                 </table>
                 <div id="showAllLoading" style="text-align: center;"><i class="fa fa-beer fa-spin fa-5x text-center"></i></div>
             </div>

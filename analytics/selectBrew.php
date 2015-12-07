@@ -27,11 +27,11 @@ require '../utilities/tools.php';
                                              data.result[i].quantity +
                                              "</td></tr>");
                 }
-                $("#getAllTable tr").click(function(e) {
+                $("#getAllTable tbody tr").click(function(e) {
                       e.preventDefault();
                       window.location = "showAnalytics.php?brewId=" + $(this).attr("data-brewId");
-                  
                 });
+                $("#getAllTable").tablesorter();
             });
             
         });
@@ -46,12 +46,10 @@ require '../utilities/tools.php';
             <div class="row">
                 <a href="<?php echo getBaseUrl(); ?>ingredient/create.php" class="callCreateModal">Add a New Ingredient</a>
                 <table id="getAllTable" class="table table-hover">
-                <?php
-                
-                echo "<th>Beer Name</th><th>Brew Id</th><th>Starts</th><th>Ends</th><th>Quantity</th>";
-                
-                
-                ?>
+                    <thead>
+                        <th>Beer Name</th><th>Brew Id</th><th>Starts</th><th>Ends</th><th>Quantity</th>
+                    </thead>
+                    <tbody>
                 </table>
                 <div id="showAllLoading" style="text-align: center;"><i class="fa fa-beer fa-spin fa-5x text-center"></i></div>
             </div>
