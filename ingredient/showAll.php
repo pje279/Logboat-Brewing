@@ -134,19 +134,10 @@ if(!isLoggedIn()) {
             <div class="row">
                 <a href="<?php echo getBaseUrl(); ?>ingredient/create.php" class="callCreateModal">Add a New Ingredient</a>
                 <table id="getAllTable" class="table table-hover">
-<<<<<<< HEAD
-                <?php
-                
-                echo "<th>Name</th><th>Supplier</th><th>Quantity</th><th>Units</th><th>Low Value</th>";
-                
-                
-                ?>
-=======
                     <thead>
-                        <th>Name</th><th>Supplier</th><th>Quantity</th><th>Units</th>
+                        <th>Name</th><th>Supplier</th><th>Quantity</th><th>Units</th><th>Low Value</th>
                     </thead>
                     <tbody>
->>>>>>> dandp
                 </table>
                 <div id="showAllLoading" style="text-align: center;"><i class="fa fa-beer fa-spin fa-5x text-center"></i></div>
             </div>
