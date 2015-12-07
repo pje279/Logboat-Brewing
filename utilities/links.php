@@ -18,19 +18,19 @@
 
 <!--Table Sorter-->
 <style>
-    #getAllTable thead tr th.tablesorter-headerDesc div:after,
-    #getAllTable thead tr th.tablesorter-headerAsc div:after,
-    #getAllTable thead tr th.tablesorter-headerUnSorted div:after {
+    #getAllTable thead tr th.tablesorter-headerDesc div:hover:after,
+    #getAllTable thead tr th.tablesorter-headerAsc div:hover:after,
+    #getAllTable thead tr th.tablesorter-headerUnSorted div:hover:after {
       font-family: FontAwesome;
     }
-    #getAllTable thead tr th.tablesorter-headerUnSorted div:after {
-      content: "\00a0\00a0\f0dc";
+    #getAllTable thead tr th.tablesorter-headerUnSorted div:hover:after {
+      content: "\00a0\f0dc";
     }
-    #getAllTable thead tr th.tablesorter-headerDesc div:after {
-      content: "\00a0\00a0\f0de";
+    #getAllTable thead tr th.tablesorter-headerDesc div:hover:after {
+      content: "\00a0\f0de";
     }
-    #getAllTable thead tr th.tablesorter-headerAsc div:after {
-      content: "\00a0\00a0\f0dd";
+    #getAllTable thead tr th.tablesorter-headerAsc div:hover:after {
+      content: "\00a0\f0dd";
     }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.24.6/js/jquery.tablesorter.min.js"></script>

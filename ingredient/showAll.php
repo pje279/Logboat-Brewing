@@ -26,8 +26,8 @@ if(!isLoggedIn()) {
                                                      data.result[i].quantity + 
                                                      "</td><td>" +
                                                      data.result[i].unitName +
-                                                     "</td></tr>" +
-                                                     data.result[i].lowValue +
+                                                     "</td><td>" +
+                                                     ( data.result[i].lowValue == null ? "No Low Value Used" : data.result[i].lowValue )+
                                                      "</td></tr>");
                         }
                         
