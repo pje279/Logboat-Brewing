@@ -14,7 +14,7 @@ $query = 'UPDATE ingredient SET name=?, supplier=?, quantity=?, unitId=?, lowVal
 
 $stmt = $link->prepare($query);
 
-$stmt->bind_param("ssddds", $name, $supplier, $quantity, $unitId, $id, $lowIngredient);
+$stmt->bind_param("ssddsd", $name, $supplier, $quantity, $unitId, $lowIngredient, $id);
 
 if($stmt->execute()) {
     success();
