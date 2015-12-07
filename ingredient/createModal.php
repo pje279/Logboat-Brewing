@@ -29,7 +29,7 @@ require '../utilities/tools.php';
         </select>
     </div>
     <div class="form-group">
-        <label for="name">Low Value</label>
-        <input type="text" class="form-control" id="low" name="low" maxlength="30" required>
+        <label for="lowValue">Low Value</label>
+        <input type="number" class="form-control" id="lowVale" name="lowValue" value='0' required>
     </div>
 </form>

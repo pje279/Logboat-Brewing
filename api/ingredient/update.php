@@ -8,13 +8,13 @@ $name = htmlspecialchars($_POST['name']);
 $supplier = htmlspecialchars($_POST['supplier']);
 $quantity = $_POST['quantity'];
 $unitId = $_POST['unitId'];
-$lowIngredient = $_POST['low'];
+$lowValue = $_POST['lowValue'];
 
 $query = 'UPDATE ingredient SET name=?, supplier=?, quantity=?, unitId=?, lowValue=? WHERE id=?';
 
 $stmt = $link->prepare($query);
 
-$stmt->bind_param("ssddsd", $name, $supplier, $quantity, $unitId, $lowIngredient, $id);
+$stmt->bind_param("ssdidi", $name, $supplier, $quantity, $unitId, $lowValue, $id);
 
 if($stmt->execute()) {
     success();
