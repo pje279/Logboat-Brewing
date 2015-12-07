@@ -11,7 +11,25 @@ if(!isLoggedIn()) {
     <head>
         <title>Logboat Brewing</title>
         <?php require '../utilities/links.php'; ?>
+        <style>
+            #getAllTable thead tr th.tablesorter-headerDesc div:after,
+            #getAllTable thead tr th.tablesorter-headerAsc div:after,
+            #getAllTable thead tr th.tablesorter-headerUnSorted div:after {
+              font-family: FontAwesome;
+            }
+            #getAllTable thead tr th.tablesorter-headerUnSorted div:after {
+              content: "\00a0\00a0\f0dc";
+            }
+            #getAllTable thead tr th.tablesorter-headerDesc div:after {
+              content: "\00a0\00a0\f0de";
+            }
+            #getAllTable thead tr th.tablesorter-headerAsc div:after {
+              content: "\00a0\00a0\f0dd";
+            }
+        </style>
         
+        <!--Table Sorter-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.24.6/js/jquery.tablesorter.min.js"></script>
         <script>
             $(document).ready(function() {
                 //Get all of the rows
@@ -19,17 +37,18 @@ if(!isLoggedIn()) {
                     $("#showAllLoading").fadeOut("slow", function() {
                         for(var i = 0, len = data.result.length; i < len; i++) {
                             $("#getAllTable").append("<tr data-ingredientId='" + data.result[i].id + "'><td>" +
-                                                     data.result[i].name +
+                                                     data.result[i].name + "&nbsp;&nbsp;" +
                                                      "</td><td>" +
-                                                     data.result[i].supplier +
+                                                     data.result[i].supplier + 
                                                      "</td><td>" + 
-                                                     data.result[i].quantity +
+                                                     data.result[i].quantity + 
                                                      "</td><td>" +
-                                                     data.result[i].unitName +
+                                                     data.result[i].unitName + 
                                                      "</td></tr>");
                         }
+                        
                         // Set all the rows to open modal
-                        $("#getAllTable tr").each(function() {
+                        $("#getAllTable tbody tr").each(function() {
                             $(this).click(function() {
                                 console.log("Clicked");
                                 $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
@@ -41,8 +60,9 @@ if(!isLoggedIn()) {
                                 });
                             });
                         });
+                        
+                        $("#getAllTable").tablesorter();
                     });
-                    
                 });
                 
                 //Set Create Modal links
@@ -130,12 +150,15 @@ if(!isLoggedIn()) {
             <div class="row">
                 <a href="<?php echo getBaseUrl(); ?>ingredient/create.php" class="callCreateModal">Add a New Ingredient</a>
                 <table id="getAllTable" class="table table-hover">
+                    <thead>
                 <?php
                 
                 echo "<th>Name</th><th>Supplier</th><th>Quantity</th><th>Units</th>";
                 
                 
                 ?>
+                    </thead>
+                    <tbody>
                 </table>
                 <div id="showAllLoading" style="text-align: center;"><i class="fa fa-beer fa-spin fa-5x text-center"></i></div>
             </div>
