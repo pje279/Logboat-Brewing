@@ -26,6 +26,8 @@ if(!isLoggedIn()) {
                                                      data.result[i].quantity +
                                                      "</td><td>" +
                                                      data.result[i].unitName +
+                                                     "</td></tr>" +
+                                                     data.result[i].lowValue +
                                                      "</td></tr>");
                         }
                         // Set all the rows to open modal
@@ -132,7 +134,7 @@ if(!isLoggedIn()) {
                 <table id="getAllTable" class="table table-hover">
                 <?php
                 
-                echo "<th>Name</th><th>Supplier</th><th>Quantity</th><th>Units</th>";
+                echo "<th>Name</th><th>Supplier</th><th>Quantity</th><th>Units</th><th>Low Value</th>";
                 
                 
                 ?>
