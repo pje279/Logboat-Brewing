@@ -27,7 +27,7 @@ if(!isLoggedIn()) {
                                                      "</td></tr>");
                         }
                         // Set all the rows to open modal
-                        $("#getAllTable tr").each(function() {
+                        $("#getAllTable tbody tr").each(function() {
                             $(this).click(function() {
                                 console.log("Clicked");
                                 $("#updateModal .modal-body").html("<div style='text-align: center;'><i class='fa fa-beer fa-spin fa-5x text-center'></i></div>");
@@ -39,6 +39,7 @@ if(!isLoggedIn()) {
                                 });
                             });
                         });
+                        $("#getAllTable").tablesorter();
                     });
                     
                 });
@@ -128,12 +129,10 @@ if(!isLoggedIn()) {
             <div class="row">
                 <a href="<?php echo getBaseUrl(); ?>ingredient/create.php" class="callCreateModal">Add a New Keg</a>
                 <table id="getAllTable" class="table table-hover">
-                <?php
-                
-                echo "<th>Keg Serial Num</th><th>Rented To</th>";
-                
-                
-                ?>
+                    <thead>
+                        <th>Keg Serial Num</th><th>Rented To</th>
+                    </thead>
+                    <tbody>
                 </table>
                 <div id="showAllLoading" style="text-align: center;"><i class="fa fa-beer fa-spin fa-5x text-center"></i></div>
             </div>
