@@ -30,6 +30,6 @@ require '../utilities/tools.php';
     </div>
     <div class="form-group">
         <label for="name">Low Value</label>
-        <input type="text" class="form-control" id="name" name="name" maxlength="30" required>
+        <input type="text" class="form-control" id="low" name="low" maxlength="30" required>
     </div>
 </form>
